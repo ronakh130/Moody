@@ -1,19 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Row } from './src/components/Row';
+import { Calendar } from './src/components/Calendar';
+import { StrictMode } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
-export default function App() {
+export function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <StrictMode>
+      <Provider store={store}>
+        <View style={styles.app}>
+          <Row />
+          <Row />
+          <Calendar />
+          <StatusBar style='auto' />
+        </View>
+      </Provider>
+    </StrictMode>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  app: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff6d8',
     alignItems: 'center',
     justifyContent: 'center',
   },
