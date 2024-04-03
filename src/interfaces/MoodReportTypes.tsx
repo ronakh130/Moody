@@ -1,4 +1,5 @@
 interface MoodReport {
+  date: Date;
   moodRating: number;
   weather: Weather;
   sleep: Sleep;

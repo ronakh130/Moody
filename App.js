@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { Row } from './src/components/Row';
-import { Calendar } from './src/components/Calendar';
+import { Calendar } from './src/components/Calendar/Calendar';
 import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
@@ -11,8 +11,6 @@ export function App() {
     <StrictMode>
       <Provider store={store}>
         <View style={styles.app}>
-          <Row />
-          <Row />
           <Calendar />
           <StatusBar style='auto' />
         </View>
