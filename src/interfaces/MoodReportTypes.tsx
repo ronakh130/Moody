@@ -1,10 +1,10 @@
 interface MoodReport {
-  date: Date;
-  moodRating: number;
-  weather: Weather;
-  sleep: Sleep;
-  people: People;
-  emotions: Emotions;
+  date: number;
+  moodRating?: number;
+  weather?: Weather;
+  sleep?: Sleep;
+  people?: People;
+  emotions?: Emotions;
   comments?: string;
   pictures?: string[];
 }

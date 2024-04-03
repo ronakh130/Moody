@@ -5,9 +5,8 @@ export interface Calendar extends MonthRecord {
 export interface MonthRecord {
   month: number;
   year: number;
-  days: number[];
-  // days: MoodReport[];
-};
+  moods: MoodReport[];
+}
 
 export enum DayOTW {
   Sunday,

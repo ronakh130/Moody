@@ -5,7 +5,7 @@ import { Calendar, MONTHS } from '../interfaces/CalendarTypes';
 const initialState: Calendar = {
   month: 0,
   year: 0,
-  days: [],
+  moods: [],
   storedMonths: {},
 };
 
@@ -23,14 +23,14 @@ export const calendarSlice = createSlice({
         state.storedMonths[monthKey] = {
           month: inputMonth,
           year: inputYear,
-          days: populateDays(inputYear, inputMonth),
+          moods: populateDays(inputYear, inputMonth),
         };
       }
 
-      const { month, year, days } = state.storedMonths[monthKey];
+      const { month, year, moods } = state.storedMonths[monthKey];
       state.month = month;
       state.year = year;
-      state.days = days;
+      state.moods = moods;
     },
   },
 });

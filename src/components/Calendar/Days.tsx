@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 export const Days = () => {
-  const { days, year, month } = useSelector((state: RootState) => state.calendarReducer);
+  const { moods, year, month } = useSelector((state: RootState) => state.calendarReducer);
   const date = new Date();
+  const days = moods.map(el => el.date);
   const currDate = date.getDate();
   const currMonth = date.getMonth();
   const lastDateOfMonth = days.lastIndexOf(new Date(year, month + 1, 0).getDate());
