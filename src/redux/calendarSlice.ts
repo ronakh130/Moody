@@ -14,7 +14,7 @@ export const calendarSlice = createSlice({
   initialState,
   reducers: {
     setMonth: (state, action) => {
-      const date = action.payload;
+      const date: Date = action.payload;
       const inputMonth = date.getMonth();
       const inputYear = date.getFullYear();
       const monthKey = MONTHS[inputMonth] + inputYear;
