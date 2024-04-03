@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 export const Days = () => {
-  const { days, year, month, currDate } = useSelector((state: RootState) => state.calendarReducer);
+  const { days, year, month } = useSelector((state: RootState) => state.calendarReducer);
+  const date = new Date();
+  const currDate = date.getDate();
+  const currMonth = date.getMonth();
   const lastDateOfMonth = days.lastIndexOf(new Date(year, month + 1, 0).getDate());
 
   function styleAciveDays(days: number[]) {
@@ -16,7 +19,7 @@ export const Days = () => {
     }
 
     while (i <= lastDateOfMonth) {
-      if (days[i] === currDate) {
+      if (currMonth === month && days[i] === currDate) {
         output.push(
           <Pressable style={styles.day} key={i}>
             <Text style={styles.currentDay}>{days[i++]}</Text>

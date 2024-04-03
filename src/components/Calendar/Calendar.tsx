@@ -3,14 +3,14 @@ import { CalendarTitle } from './CalendarTitle';
 import { DayNames } from './DayNames';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setDate } from '../../redux/calendarSlice';
+import { setMonth } from '../../redux/calendarSlice';
 import { Days } from './Days';
 
 export const Calendar = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setDate(new Date()));
+    dispatch(setMonth(new Date()));
   }, []);
 
   return (

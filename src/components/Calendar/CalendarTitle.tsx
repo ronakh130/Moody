@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'rn-icons/md';
 import { RootState } from '../../redux/store';
-import { setDate } from '../../redux/calendarSlice';
+import { setMonth } from '../../redux/calendarSlice';
 import { MONTHS } from '../../interfaces/CalendarTypes';
 
 export const CalendarTitle = () => {
@@ -11,12 +11,12 @@ export const CalendarTitle = () => {
 
   function handleOnClickLeft() {
     const date = new Date(year, month - 1);
-    dispatch(setDate(date));
+    dispatch(setMonth(date));
   }
 
   function handleOnClickRight() {
     const date = new Date(year, month + 1);
-    dispatch(setDate(date));
+    dispatch(setMonth(date));
   }
 
   return (
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     paddingBottom: 20,
-    userSelect: 'none',
   },
   titleText: {
     fontSize: 20,

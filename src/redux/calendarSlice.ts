@@ -1,35 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { populateDays } from '../util';
+import { Calendar, MONTHS } from '../interfaces/CalendarTypes';
 
-export type CalendarState = {
-  currDate: number;
-  month: number;
-  year: number;
-  days: number[];
-};
-
-const initialState: CalendarState = {
-  currDate: 1,
+const initialState: Calendar = {
   month: 0,
   year: 0,
   days: [],
+  storedMonths: {},
 };
 
 export const calendarSlice = createSlice({
   name: 'calendar',
   initialState,
   reducers: {
-    setDate: (state, action) => {
+    setMonth: (state, action) => {
       const date = action.payload;
+      const inputMonth = date.getMonth();
+      const inputYear = date.getFullYear();
+      const monthKey = MONTHS[inputMonth] + inputYear;
 
-      state.currDate = date.getDate();
-      state.month = date.getMonth();
-      state.year = date.getFullYear();
-      state.days = populateDays(state.year, state.month);
+      if (!(monthKey in state.storedMonths)) {
+        state.storedMonths[monthKey] = {
+          month: inputMonth,
+          year: inputYear,
+          days: populateDays(inputYear, inputMonth),
+        };
+      }
+
+      const { month, year, days } = state.storedMonths[monthKey];
+      state.month = month;
+      state.year = year;
+      state.days = days;
     },
   },
 });
 
-export const { setDate } = calendarSlice.actions;
+export const { setMonth } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

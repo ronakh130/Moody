@@ -1,8 +1,13 @@
-interface Calendar {
-  month: string;
-  year: number;
-  days: MoodReport[];
+export interface Calendar extends MonthRecord {
+  storedMonths: Record<string, MonthRecord>;
 }
+
+export interface MonthRecord {
+  month: number;
+  year: number;
+  days: number[];
+  // days: MoodReport[];
+};
 
 export enum DayOTW {
   Sunday,
