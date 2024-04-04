@@ -5,6 +5,7 @@ import { Calendar } from './src/components/Calendar/Calendar';
 import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
+import { MoodReportModal } from './src/components/MoodReportModal';
 
 export function App() {
   return (
@@ -12,6 +13,7 @@ export function App() {
       <Provider store={store}>
         <View style={styles.app}>
           <Calendar />
+          <MoodReportModal />
           <StatusBar style='auto' />
         </View>
       </Provider>

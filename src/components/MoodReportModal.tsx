@@ -1,20 +1,23 @@
-import { useState } from 'react';
 import { StyleSheet, Text, Modal, Pressable, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { closeMoodModal } from '../redux/calendarSlice';
 
 export const MoodReportModal = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
+  const { moodModalVisible } = useSelector((state: RootState) => state.calendarReducer);
 
   return (
     <Modal
       animationType='slide'
       presentationStyle='pageSheet'
-      visible={modalVisible}
+      visible={moodModalVisible}
       onRequestClose={() => {
-        setModalVisible(!modalVisible);
+        dispatch(closeMoodModal());
       }}
     >
       <View style={styles.modalContainer}>
-        <Pressable onPress={() => setModalVisible(false)}>
+        <Pressable onPress={() => dispatch(closeMoodModal())}>
           <Text>Close Modal</Text>
         </Pressable>
       </View>

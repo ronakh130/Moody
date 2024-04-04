@@ -7,6 +7,7 @@ const initialState: Calendar = {
   year: 0,
   moods: [],
   storedMonths: {},
+  moodModalVisible: false,
 };
 
 export const calendarSlice = createSlice({
@@ -32,9 +33,15 @@ export const calendarSlice = createSlice({
       state.year = year;
       state.moods = moods;
     },
+    openMoodModal: (state) => {
+      state.moodModalVisible = true;
+    },
+    closeMoodModal: (state) => {
+      state.moodModalVisible = false;
+    }
   },
 });
 
-export const { setMonth } = calendarSlice.actions;
+export const { setMonth, openMoodModal, closeMoodModal } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

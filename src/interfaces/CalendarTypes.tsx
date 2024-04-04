@@ -1,5 +1,6 @@
 export interface Calendar extends MonthRecord {
   storedMonths: Record<string, MonthRecord>;
+  moodModalVisible: boolean;
 }
 
 export interface MonthRecord {

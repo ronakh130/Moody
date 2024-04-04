@@ -1,8 +1,10 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { openMoodModal } from '../../redux/calendarSlice';
 
 export const Days = () => {
+  const dispatch = useDispatch();
   const { moods, year, month } = useSelector((state: RootState) => state.calendarReducer);
   const date = new Date();
   const days = moods.map((el) => el.date);
@@ -22,7 +24,7 @@ export const Days = () => {
     while (i <= lastDateOfMonth) {
       const style = currMonth === month && days[i] === currDate ? styles.currentDay : styles.activeDay;
       output.push(
-        <Pressable style={styles.day} key={i}>
+        <Pressable style={styles.day} key={i} onPress={() => dispatch(openMoodModal())}>
           <Text style={style}>{days[i++]}</Text>
         </Pressable>
       );
