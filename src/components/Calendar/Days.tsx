@@ -5,12 +5,12 @@ import { RootState } from '../../redux/store';
 export const Days = () => {
   const { moods, year, month } = useSelector((state: RootState) => state.calendarReducer);
   const date = new Date();
-  const days = moods.map(el => el.date);
+  const days = moods.map((el) => el.date);
   const currDate = date.getDate();
   const currMonth = date.getMonth();
   const lastDateOfMonth = days.lastIndexOf(new Date(year, month + 1, 0).getDate());
 
-  function styleAciveDays(days: number[]) {
+  function renderDays(days: number[]) {
     const output = [];
     let i = 0;
     let startOfCurrMonth = days.indexOf(1);
@@ -20,24 +20,18 @@ export const Days = () => {
     }
 
     while (i <= lastDateOfMonth) {
-      if (currMonth === month && days[i] === currDate) {
-        output.push(
-          <Pressable style={styles.day} key={i}>
-            <Text style={styles.currentDay}>{days[i++]}</Text>
-          </Pressable>
-        );
-      } else
-        output.push(
-          <Pressable style={styles.day} key={i}>
-            <Text style={styles.activeDay}>{days[i++]}</Text>
-          </Pressable>
-        );
+      const style = currMonth === month && days[i] === currDate ? styles.currentDay : styles.activeDay;
+      output.push(
+        <Pressable style={styles.day} key={i}>
+          <Text style={style}>{days[i++]}</Text>
+        </Pressable>
+      );
     }
 
     return output;
   }
 
-  return <View style={styles.daysContainer}>{styleAciveDays(days)}</View>;
+  return <View style={styles.daysContainer}>{renderDays(days)}</View>;
 };
 
 const styles = StyleSheet.create({
