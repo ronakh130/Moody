@@ -1,7 +1,8 @@
 import { StyleSheet, Text, Modal, Pressable, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { closeMoodModal } from '../redux/calendarSlice';
+import { RootState } from '../../redux/store';
+import { closeMoodModal } from '../../redux/calendarSlice';
+import { MoodReportRow } from './MoodReportRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,9 @@ export const MoodReportModal = () => {
       }}
     >
       <View style={styles.modalContainer}>
+        <MoodReportRow />
         <Pressable onPress={() => dispatch(closeMoodModal())}>
-          <Text>Close Modal</Text>
+          <Text>Submit</Text>
         </Pressable>
       </View>
     </Modal>
