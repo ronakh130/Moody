@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { openMoodModal } from '../../redux/calendarSlice';
+import { colors } from '../../colors';
 
 export const Days = () => {
   const dispatch = useDispatch();
@@ -51,13 +52,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   activeDay: {
-    color: 'black',
+    color: colors.calActiveDays,
   },
 
   inactiveDay: {
-    color: 'grey',
+    color: colors.calInactiveDays,
   },
   currentDay: {
-    color: 'red',
+    color: colors.calCurrentDay,
   },
 });

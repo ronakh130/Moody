@@ -1,12 +1,21 @@
-import { StyleSheet, Text, Modal, Pressable, View } from 'react-native';
+import { StyleSheet, Text, Modal, Pressable, View, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { closeMoodModal } from '../../redux/calendarSlice';
-import { MoodReportRow } from './MoodReportRow';
+import { MoodReportRow, MoodReportRowProps } from './MoodReportRow';
+import { moodRow } from './MoodReportRows/MoodRow';
+import { weatherRow } from './MoodReportRows/WeatherRow';
+import { socialRow } from './MoodReportRows/SocialRow';
+import { activityRow } from './MoodReportRows/ActivityRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
   const { moodModalVisible } = useSelector((state: RootState) => state.calendarReducer);
+  const moodReportRows = [moodRow(), weatherRow(), socialRow(), activityRow()];
+
+  function renderRows(row: MoodReportRowProps) {
+    return <MoodReportRow title={row.title} nodes={row.nodes} />;
+  }
 
   return (
     <Modal
@@ -18,8 +27,8 @@ export const MoodReportModal = () => {
       }}
     >
       <View style={styles.modalContainer}>
-        <MoodReportRow />
-        <Pressable onPress={() => dispatch(closeMoodModal())}>
+        <FlatList data={moodReportRows} renderItem={({ item }) => renderRows(item)} />
+        <Pressable style={styles.submitButton} onPress={() => dispatch(closeMoodModal())}>
           <Text>Submit</Text>
         </Pressable>
       </View>
@@ -32,7 +41,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 35,
+    marginTop: 30,
+    marginBottom: 10,
   },
+  submitButton: {
+    margin: 20,
+  }
 });

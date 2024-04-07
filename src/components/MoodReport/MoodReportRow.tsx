@@ -1,25 +1,22 @@
 import { StyleSheet, View } from 'react-native';
-import { MoodReportNode } from './MoodReportNode';
-import { FaRegFaceFrown, FaRegFaceLaughBeam, FaRegFaceMeh, FaRegFaceSmile, FaRegFaceTired } from 'rn-icons/fa6';
+import { MoodNode, MoodNodeProps } from './MoodNode';
 import { StyledHeaderText } from '../StyledHeaderText';
 
-type MoodReportRowProps = {
+export interface MoodReportRowProps {
   title: string;
-  children: JSX.Element[];
-};
+  nodes: MoodNodeProps[];
+}
 
-export const MoodReportRow = () => {
+export const MoodReportRow = ({ title, nodes }: MoodReportRowProps) => {
   return (
     <View style={styles.rowContainer}>
       <View style={styles.titleContainer}>
-        <StyledHeaderText>How was your day?</StyledHeaderText>
+        <StyledHeaderText>{title}</StyledHeaderText>
       </View>
       <View style={styles.nodeContainer}>
-        <MoodReportNode Icon={FaRegFaceTired} label='awful' />
-        <MoodReportNode Icon={FaRegFaceFrown} label='bad' />
-        <MoodReportNode Icon={FaRegFaceMeh} label='meh' />
-        <MoodReportNode Icon={FaRegFaceSmile} label='good' />
-        <MoodReportNode Icon={FaRegFaceLaughBeam} label='great' />
+        {nodes.map((node, i) => {
+          return <MoodNode Icon={node.Icon} label={node.label} key={i}/>;
+        })}
       </View>
     </View>
   );
@@ -28,22 +25,21 @@ export const MoodReportRow = () => {
 const styles = StyleSheet.create({
   rowContainer: {
     gap: 20,
-    margin: 20,
+    marginVertical: 15,
+    marginHorizontal: 30,
     padding: 30,
     backgroundColor: 'orange',
     borderRadius: 10,
-    width: 350,
+    width: 365,
   },
   titleContainer: {
     display: 'flex',
   },
-  title: {
-    fontSize: 20,
-  },
   nodeContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
     alignItems: 'center',
     gap: 25,
   },
