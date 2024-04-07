@@ -11,7 +11,7 @@ export function activityRow(): MoodReportRowProps {
     nodes: [
       {
         Icon: FaWalking,
-        label: 'walking',
+        label: 'walk',
       },
       {
         Icon: PiTelevisionSimpleBold,
@@ -27,7 +27,7 @@ export function activityRow(): MoodReportRowProps {
       },
       {
         Icon: FaGamepad,
-        label: 'gaming',
+        label: 'game',
       },
       {
         Icon: FaPaintBrush,

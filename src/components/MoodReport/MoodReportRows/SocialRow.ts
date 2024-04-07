@@ -1,8 +1,8 @@
 import { MoodReportRowProps } from '../MoodReportRow';
 import { FaUserFriends } from 'rn-icons/fa';
 import { FaPaw, FaPeopleGroup } from 'rn-icons/fa6';
-import { TbUserHeart } from 'rn-icons/tb';
-import { MdEmojiPeople } from 'rn-icons/md';
+import { RiUserHeartLine } from 'rn-icons/ri';
+import { BsPersonArmsUp } from 'rn-icons/bs';
 
 export function socialRow(): MoodReportRowProps {
   return {
@@ -17,7 +17,7 @@ export function socialRow(): MoodReportRowProps {
         label: 'friends',
       },
       {
-        Icon: TbUserHeart,
+        Icon: RiUserHeartLine,
         label: 'partner',
       },
       {
@@ -25,7 +25,7 @@ export function socialRow(): MoodReportRowProps {
         label: 'other',
       },
       {
-        Icon: MdEmojiPeople,
+        Icon: BsPersonArmsUp,
         label: 'none',
       },
     ],
