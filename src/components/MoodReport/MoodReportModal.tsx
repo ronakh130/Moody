@@ -7,11 +7,12 @@ import { moodRow } from './MoodReportRows/MoodRow';
 import { weatherRow } from './MoodReportRows/WeatherRow';
 import { socialRow } from './MoodReportRows/SocialRow';
 import { activityRow } from './MoodReportRows/ActivityRow';
+import { emotionsRow } from './MoodReportRows/EmotionsRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
   const { moodModalVisible } = useSelector((state: RootState) => state.calendarReducer);
-  const moodReportRows = [moodRow(), weatherRow(), socialRow(), activityRow()];
+  const moodReportRows = [moodRow(), weatherRow(), emotionsRow(), socialRow(), activityRow()];
 
   function renderRows(row: MoodReportRowProps) {
     return <MoodReportRow title={row.title} nodes={row.nodes} />;
@@ -46,5 +47,5 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     margin: 20,
-  }
+  },
 });

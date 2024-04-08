@@ -1,9 +1,10 @@
 import { PiCookingPot, PiTelevisionSimpleBold } from 'rn-icons/pi';
 import { MoodReportRowProps } from '../MoodReportRow';
-import { FaPaintBrush, FaWalking } from 'rn-icons/fa';
+import { FaWalking } from 'rn-icons/fa';
 import { FaBook, FaGamepad } from 'rn-icons/fa6';
 import { BiRun } from 'rn-icons/bi';
 import { RiZzzFill } from 'rn-icons/ri';
+import { HiOutlinePaintBrush } from 'rn-icons/hi2';
 
 export function activityRow(): MoodReportRowProps {
   return {
@@ -30,8 +31,8 @@ export function activityRow(): MoodReportRowProps {
         label: 'game',
       },
       {
-        Icon: FaPaintBrush,
-        label: 'paint',
+        Icon: HiOutlinePaintBrush,
+        label: 'art',
       },
       {
         Icon: BiRun,
