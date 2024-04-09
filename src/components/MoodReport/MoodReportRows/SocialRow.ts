@@ -6,7 +6,7 @@ import { BsPersonArmsUp } from 'rn-icons/bs';
 import { MoodReport, Social } from '../../../interfaces/MoodReportTypes';
 
 export function socialRow(data: MoodReport): MoodReportRowProps {
-  const { social } = data;
+  const { social } = data ?? new Set();
   return {
     title: 'Social',
     nodes: [

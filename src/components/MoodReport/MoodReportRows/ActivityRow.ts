@@ -8,7 +8,7 @@ import { HiOutlinePaintBrush } from 'rn-icons/hi2';
 import { Activities, MoodReport } from '../../../interfaces/MoodReportTypes';
 
 export function activityRow(data: MoodReport): MoodReportRowProps {
-  const { activities } = data;
+  const { activities } = data ?? new Set();
   return {
     title: 'Activities',
     nodes: [

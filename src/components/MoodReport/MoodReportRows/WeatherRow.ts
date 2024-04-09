@@ -5,7 +5,7 @@ import { PiWind } from 'rn-icons/pi';
 import { MoodReport, Weather } from '../../../interfaces/MoodReportTypes';
 
 export function weatherRow(data: MoodReport): MoodReportRowProps {
-  const { weather } = data;
+  const { weather } = data ?? '';
   return {
     title: 'Weather',
     nodes: [

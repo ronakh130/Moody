@@ -3,7 +3,7 @@ import { MoodReportRowProps } from '../MoodReportRow';
 import { MoodRating, MoodReport } from '../../../interfaces/MoodReportTypes';
 
 export function moodRow(data: MoodReport): MoodReportRowProps {
-  const { moodRating } = data;
+  const { moodRating } = data ?? '';
   return {
     title: 'How was your day?',
     nodes: [

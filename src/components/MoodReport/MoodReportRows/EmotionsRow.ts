@@ -8,7 +8,7 @@ import { GiFlowerPot } from 'rn-icons/gi';
 import { Emotions, MoodReport } from '../../../interfaces/MoodReportTypes';
 
 export function emotionsRow(data: MoodReport): MoodReportRowProps {
-  const { emotions } = data;
+  const { emotions } = data ?? new Set();
   return {
     title: 'Emotions',
     nodes: [
