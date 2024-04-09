@@ -1,6 +1,9 @@
+import { MoodReport } from "./MoodReportTypes";
+
 export interface Calendar extends MonthRecord {
   storedMonths: Record<string, MonthRecord>;
   moodModalVisible: boolean;
+  moodModalData: MoodReport;
 }
 
 export interface MonthRecord {

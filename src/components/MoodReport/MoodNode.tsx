@@ -5,13 +5,16 @@ import { colors } from '../../colors';
 
 export interface MoodNodeProps {
   Icon: IconType;
-  label?: string;
+  label: string;
+  selected?: boolean;
 }
 
-export const MoodNode = ({ Icon, label }: MoodNodeProps) => {
+export const MoodNode = ({ Icon, label, selected }: MoodNodeProps) => {
+  const color = selected ? colors.calCurrentDay : colors.text;
+
   return (
     <Pressable style={styles.container}>
-      <Icon size={40} fill={colors.text} color={colors.text}/>
+      <Icon size={40} fill={color} color={color} />
       {label && <StyledText>{label}</StyledText>}
     </Pressable>
   );

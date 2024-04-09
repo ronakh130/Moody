@@ -5,42 +5,52 @@ import { FaBook, FaGamepad } from 'rn-icons/fa6';
 import { BiRun } from 'rn-icons/bi';
 import { RiZzzFill } from 'rn-icons/ri';
 import { HiOutlinePaintBrush } from 'rn-icons/hi2';
+import { Activities, MoodReport } from '../../../interfaces/MoodReportTypes';
 
-export function activityRow(): MoodReportRowProps {
+export function activityRow(data: MoodReport): MoodReportRowProps {
+  const { activities } = data;
   return {
     title: 'Activities',
     nodes: [
       {
         Icon: FaWalking,
-        label: 'walk',
+        label: Activities.walk,
+        selected: activities?.has(Activities.walk),
       },
       {
         Icon: PiTelevisionSimpleBold,
-        label: 'tv',
+        label: Activities.tv,
+        selected: activities?.has(Activities.tv),
       },
       {
         Icon: FaBook,
-        label: 'read',
+        label: Activities.read,
+        selected: activities?.has(Activities.read),
       },
       {
         Icon: PiCookingPot,
-        label: 'cook',
+        label: Activities.cook,
+        selected: activities?.has(Activities.cook),
       },
       {
         Icon: FaGamepad,
-        label: 'game',
+        label: Activities.game,
+        selected: activities?.has(Activities.game),
       },
       {
         Icon: HiOutlinePaintBrush,
-        label: 'art',
+        label: Activities.art,
+        selected: activities?.has(Activities.art),
       },
       {
         Icon: BiRun,
-        label: 'sports',
+        label: Activities.sports,
+        selected: activities?.has(Activities.sports),
       },
       {
         Icon: RiZzzFill,
-        label: 'relax',
+        label: Activities.relax,
+        selected: activities?.has(Activities.relax),
       },
     ],
   };

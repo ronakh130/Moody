@@ -1,43 +1,63 @@
-interface MoodReport {
+export interface MoodReport {
   date: number;
-  moodRating?: number;
+  moodRating?: MoodRating;
+  activities?: Set<Activities>;
   weather?: Weather;
   sleep?: Sleep;
-  people?: People;
-  emotions?: Emotions;
+  social?: Set<Social>;
+  emotions?: Set<Emotions>;
   comments?: string;
   pictures?: string[];
 }
 
-enum Weather {
-  Sunny,
-  Cloudy,
-  Snowy,
-  Rainy,
-  Windy,
+export enum MoodRating {
+  awful = 'awful',
+  bad = 'bad',
+  meh = 'meh',
+  good = 'good',
+  great = 'great',
 }
 
-enum Sleep {
-  Good,
-  Medium,
-  Bad,
+export enum Activities {
+  walk = 'walk',
+  tv = 'tv',
+  read = 'read',
+  cook = 'cook',
+  game = 'game',
+  art = 'art',
+  sports = 'sports',
+  relax = 'relax',
 }
 
-enum People {
-  Friends,
-  Family,
-  Partner,
-  Other,
-  None,
+export enum Weather {
+  sunny = 'sunny',
+  cloudy = 'cloudy',
+  snowy = 'snowy',
+  rainy = 'rainy',
+  windy = 'windy',
 }
 
-enum Emotions {
-  Excited,
-  Happy,
-  Relaxed,
-  Sad,
-  Tired,
-  Proud,
-  Refreshed,
-  Neutral,
+export enum Sleep {
+  good = 'good',
+  medium = 'medium',
+  bad = 'bad',
+}
+
+export enum Social {
+  friends = 'friends',
+  family = 'family',
+  partner = 'partner',
+  other = 'other',
+  none = 'none',
+}
+
+export enum Emotions {
+  excited = 'excited',
+  happy = 'happy',
+  relaxed = 'relaxed',
+  sad = 'sad',
+  tired = 'tired',
+  proud = 'proud',
+  refreshed = 'refreshed',
+  'so-so' = 'so-so',
 }

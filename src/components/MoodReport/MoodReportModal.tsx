@@ -11,8 +11,8 @@ import { emotionsRow } from './MoodReportRows/EmotionsRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
-  const { moodModalVisible } = useSelector((state: RootState) => state.calendarReducer);
-  const moodReportRows = [moodRow(), weatherRow(), emotionsRow(), socialRow(), activityRow()];
+  const { moodModalVisible, moodModalData } = useSelector((state: RootState) => state.calendarReducer);
+  const moodReportRows = [moodRow, weatherRow, emotionsRow, socialRow, activityRow];
 
   function renderRows(row: MoodReportRowProps) {
     return <MoodReportRow title={row.title} nodes={row.nodes} />;
@@ -28,7 +28,7 @@ export const MoodReportModal = () => {
       }}
     >
       <View style={styles.modalContainer}>
-        <FlatList data={moodReportRows} renderItem={({ item }) => renderRows(item)} />
+        <FlatList data={moodReportRows.map(func => func(moodModalData))} renderItem={({ item }) => renderRows(item)} />
         <Pressable style={styles.submitButton} onPress={() => dispatch(closeMoodModal())}>
           <Text>Submit</Text>
         </Pressable>
