@@ -4,11 +4,14 @@ import { RootState } from '../../redux/store';
 import { closeMoodModal } from '../../redux/calendarSlice';
 import { MoodRow } from './MoodReportRows/MoodRow';
 import { ActivityRow } from './MoodReportRows/ActivityRow';
+import { EmotionsRow } from './MoodReportRows/EmotionsRow';
+import { SocialRow } from './MoodReportRows/SocialRow';
+import { WeatherRow } from './MoodReportRows/WeatherRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
   const { moodModalVisible } = useSelector((state: RootState) => state.calendarReducer);
-  const moodReportRows = [MoodRow, ActivityRow];
+  const moodReportRows = [MoodRow, WeatherRow, EmotionsRow, SocialRow, ActivityRow];
 
   return (
     <Modal
@@ -20,7 +23,7 @@ export const MoodReportModal = () => {
       }}
     >
       <View style={styles.modalContainer}>
-        <FlatList data={moodReportRows.map(func => func())} renderItem={({ item }) => item} />
+        <FlatList data={moodReportRows.map((func) => func())} renderItem={({ item }) => item} />
         <Pressable style={styles.submitButton} onPress={() => dispatch(closeMoodModal())}>
           <Text>Submit</Text>
         </Pressable>

@@ -49,13 +49,37 @@ export const calendarSlice = createSlice({
     },
     setModalActivites: (state, { payload }) => {
       const set = state.moodModalData.activities ?? new Set();
-      
+
       set?.has(payload) ? set.delete(payload) : set?.add(payload);
       state.moodModalData.activities = set;
+    },
+    setModalEmotions: (state, { payload }) => {
+      const set = state.moodModalData.emotions ?? new Set();
+
+      set?.has(payload) ? set.delete(payload) : set?.add(payload);
+      state.moodModalData.emotions = set;
+    },
+    setModalSocials: (state, { payload }) => {
+      const set = state.moodModalData.social ?? new Set();
+
+      set?.has(payload) ? set.delete(payload) : set?.add(payload);
+      state.moodModalData.social = set;
+    },
+    setModalWeather: (state, { payload }) => {
+      state.moodModalData.weather = payload;
     },
   },
 });
 
-export const { setMonth, openMoodModal, closeMoodModal, setModalMood, setModalActivites } = calendarSlice.actions;
+export const {
+  setMonth,
+  openMoodModal,
+  closeMoodModal,
+  setModalMood,
+  setModalActivites,
+  setModalEmotions,
+  setModalSocials,
+  setModalWeather,
+} = calendarSlice.actions;
 
 export default calendarSlice.reducer;
