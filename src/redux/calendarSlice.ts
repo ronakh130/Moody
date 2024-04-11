@@ -8,15 +8,15 @@ const initialState: Calendar = {
   moods: [],
   storedMonths: {},
   moodModalVisible: false,
-  moodModalData: { date: 0 },
+  moodModalData: { date: new Date() },
 };
 
 export const calendarSlice = createSlice({
   name: 'calendar',
   initialState,
   reducers: {
-    setMonth: (state, action) => {
-      const date: Date = action.payload;
+    setMonth: (state, { payload }) => {
+      const date: Date = payload;
       const inputMonth = date.getMonth();
       const inputYear = date.getFullYear();
       const monthKey = MONTHS[inputMonth] + inputYear;
@@ -34,8 +34,8 @@ export const calendarSlice = createSlice({
       state.year = year;
       state.moods = moods;
     },
-    openMoodModal: (state, action) => {
-      const { date, monthKey, inactiveDays } = action.payload;
+    openMoodModal: (state, { payload }) => {
+      const { date, monthKey, inactiveDays } = payload;
       const index = date + inactiveDays - 1;
 
       state.moodModalData = state.storedMonths[monthKey].moods[index];
@@ -44,9 +44,18 @@ export const calendarSlice = createSlice({
     closeMoodModal: (state) => {
       state.moodModalVisible = false;
     },
+    setModalMood: (state, { payload }) => {
+      state.moodModalData.moodRating = payload;
+    },
+    setModalActivites: (state, { payload }) => {
+      const set = state.moodModalData.activities ?? new Set();
+      
+      set?.has(payload) ? set.delete(payload) : set?.add(payload);
+      state.moodModalData.activities = set;
+    },
   },
 });
 
-export const { setMonth, openMoodModal, closeMoodModal } = calendarSlice.actions;
+export const { setMonth, openMoodModal, closeMoodModal, setModalMood, setModalActivites } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

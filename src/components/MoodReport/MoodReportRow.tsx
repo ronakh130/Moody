@@ -15,7 +15,8 @@ export const MoodReportRow = ({ title, nodes }: MoodReportRowProps) => {
       </View>
       <View style={styles.nodeContainer}>
         {nodes.map((node, i) => {
-          return <MoodNode Icon={node.Icon} label={node.label} selected={node.selected} key={i} />;
+          const { label, selected, actionCreator } = node;
+          return <MoodNode Icon={node.Icon} label={label} selected={selected} actionCreator={actionCreator} key={i} />;
         })}
       </View>
     </View>

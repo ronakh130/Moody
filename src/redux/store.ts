@@ -1,5 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import calendarReducer from './calendarSlice';
+import { enableMapSet } from 'immer';
+
+enableMapSet();
 
 export const store = configureStore({
   reducer: {

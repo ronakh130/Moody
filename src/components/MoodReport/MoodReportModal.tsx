@@ -2,21 +2,13 @@ import { StyleSheet, Text, Modal, Pressable, View, FlatList } from 'react-native
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { closeMoodModal } from '../../redux/calendarSlice';
-import { MoodReportRow, MoodReportRowProps } from './MoodReportRow';
-import { moodRow } from './MoodReportRows/MoodRow';
-import { weatherRow } from './MoodReportRows/WeatherRow';
-import { socialRow } from './MoodReportRows/SocialRow';
-import { activityRow } from './MoodReportRows/ActivityRow';
-import { emotionsRow } from './MoodReportRows/EmotionsRow';
+import { MoodRow } from './MoodReportRows/MoodRow';
+import { ActivityRow } from './MoodReportRows/ActivityRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
-  const { moodModalVisible, moodModalData } = useSelector((state: RootState) => state.calendarReducer);
-  const moodReportRows = [moodRow, weatherRow, emotionsRow, socialRow, activityRow];
-
-  function renderRows(row: MoodReportRowProps) {
-    return <MoodReportRow title={row.title} nodes={row.nodes} />;
-  }
+  const { moodModalVisible } = useSelector((state: RootState) => state.calendarReducer);
+  const moodReportRows = [MoodRow, ActivityRow];
 
   return (
     <Modal
@@ -28,7 +20,7 @@ export const MoodReportModal = () => {
       }}
     >
       <View style={styles.modalContainer}>
-        <FlatList data={moodReportRows.map(func => func(moodModalData))} renderItem={({ item }) => renderRows(item)} />
+        <FlatList data={moodReportRows.map(func => func())} renderItem={({ item }) => item} />
         <Pressable style={styles.submitButton} onPress={() => dispatch(closeMoodModal())}>
           <Text>Submit</Text>
         </Pressable>
