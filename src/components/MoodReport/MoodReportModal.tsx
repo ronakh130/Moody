@@ -10,21 +10,26 @@ import { WeatherRow } from './MoodReportRows/WeatherRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
-  const { moodModalVisible } = useSelector((state: RootState) => state.calendarReducer);
+  const { moodModalVisible, moods } = useSelector((state: RootState) => state.calendarReducer);
   const moodReportRows = [MoodRow, WeatherRow, EmotionsRow, SocialRow, ActivityRow];
+
+  function handleClose() {
+    const days = moods.map((el) => el.date);
+    const startOfCurrMonth = days.indexOf(1);
+
+    dispatch(closeMoodModal({ inactiveDays: startOfCurrMonth }));
+  }
 
   return (
     <Modal
       animationType='slide'
       presentationStyle='pageSheet'
       visible={moodModalVisible}
-      onRequestClose={() => {
-        dispatch(closeMoodModal());
-      }}
+      onRequestClose={handleClose}
     >
       <View style={styles.modalContainer}>
         <FlatList data={moodReportRows.map((func) => func())} renderItem={({ item }) => item} />
-        <Pressable style={styles.submitButton} onPress={() => dispatch(closeMoodModal())}>
+        <Pressable style={styles.submitButton} onPress={handleClose}>
           <Text>Submit</Text>
         </Pressable>
       </View>

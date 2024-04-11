@@ -41,7 +41,13 @@ export const calendarSlice = createSlice({
       state.moodModalData = state.storedMonths[monthKey].moods[index];
       state.moodModalVisible = true;
     },
-    closeMoodModal: (state) => {
+    closeMoodModal: (state, {payload}) => {
+      const {inactiveDays} = payload;
+      const {date} = state.moodModalData;
+      const monthKey = MONTHS[state.month] + state.year;
+      const index = date + inactiveDays - 1;
+
+      state.storedMonths[monthKey].moods[index] = state.moodModalData;
       state.moodModalVisible = false;
     },
     setModalMood: (state, { payload }) => {
