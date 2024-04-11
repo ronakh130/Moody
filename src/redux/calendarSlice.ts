@@ -8,7 +8,7 @@ const initialState: Calendar = {
   moods: [],
   storedMonths: {},
   moodModalVisible: false,
-  moodModalData: { date: new Date() },
+  moodModalData: { date: 1 },
 };
 
 export const calendarSlice = createSlice({
