@@ -8,7 +8,9 @@ const initialState: Calendar = {
   moods: [],
   storedMonths: {},
   moodModalVisible: false,
-  moodModalData: { date: 1 },
+  moodModalData: {
+    date: 1,
+  },
 };
 
 export const calendarSlice = createSlice({
@@ -41,9 +43,9 @@ export const calendarSlice = createSlice({
       state.moodModalData = state.storedMonths[monthKey].moods[index];
       state.moodModalVisible = true;
     },
-    closeMoodModal: (state, {payload}) => {
-      const {inactiveDays} = payload;
-      const {date} = state.moodModalData;
+    closeMoodModal: (state, { payload }) => {
+      const { inactiveDays } = payload;
+      const { date } = state.moodModalData;
       const monthKey = MONTHS[state.month] + state.year;
       const index = date + inactiveDays - 1;
 
@@ -56,19 +58,19 @@ export const calendarSlice = createSlice({
     setModalActivites: (state, { payload }) => {
       const set = state.moodModalData.activities ?? new Set();
 
-      set?.has(payload) ? set.delete(payload) : set?.add(payload);
+      set.has(payload) ? set.delete(payload) : set.add(payload);
       state.moodModalData.activities = set;
     },
     setModalEmotions: (state, { payload }) => {
       const set = state.moodModalData.emotions ?? new Set();
 
-      set?.has(payload) ? set.delete(payload) : set?.add(payload);
+      set.has(payload) ? set.delete(payload) : set.add(payload);
       state.moodModalData.emotions = set;
     },
     setModalSocials: (state, { payload }) => {
       const set = state.moodModalData.social ?? new Set();
 
-      set?.has(payload) ? set.delete(payload) : set?.add(payload);
+      set.has(payload) ? set.delete(payload) : set.add(payload);
       state.moodModalData.social = set;
     },
     setModalWeather: (state, { payload }) => {

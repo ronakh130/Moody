@@ -7,6 +7,7 @@ import { ActivityRow } from './MoodReportRows/ActivityRow';
 import { EmotionsRow } from './MoodReportRows/EmotionsRow';
 import { SocialRow } from './MoodReportRows/SocialRow';
 import { WeatherRow } from './MoodReportRows/WeatherRow';
+import React from 'react';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export const MoodReportModal = () => {
       onRequestClose={handleClose}
     >
       <View style={styles.modalContainer}>
-        <FlatList data={moodReportRows.map((func) => func())} renderItem={({ item }) => item} />
+        <FlatList data={moodReportRows.map((func) => func())} renderItem={({ item }: React.ElementType) => item} />
         <Pressable style={styles.submitButton} onPress={handleClose}>
           <Text>Submit</Text>
         </Pressable>
