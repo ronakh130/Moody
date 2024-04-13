@@ -1,4 +1,10 @@
-import { FaRegFaceFrown, FaRegFaceLaughBeam, FaRegFaceMeh, FaRegFaceSmile, FaRegFaceTired } from 'rn-icons/fa6';
+import {
+  FaRegFaceFrown,
+  FaRegFaceLaughBeam,
+  FaRegFaceMeh,
+  FaRegFaceSmile,
+  FaRegFaceTired,
+} from 'rn-icons/fa6';
 import { MoodRating } from '../../../interfaces/MoodReportTypes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
@@ -37,11 +43,5 @@ export const MoodRow = () => {
     },
   ];
 
-  return (
-    <MoodReportRow
-      title={title}
-      nodes={nodes}
-      actionCreator={actionCreator}
-    />
-  );
+  return <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />;
 };

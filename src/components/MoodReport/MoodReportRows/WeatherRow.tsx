@@ -39,11 +39,5 @@ export const WeatherRow = () => {
     },
   ];
 
-  return (
-    <MoodReportRow
-      title={title}
-      nodes={nodes}
-      actionCreator={actionCreator}
-    />
-  );
+  return <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />;
 };

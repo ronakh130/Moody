@@ -15,7 +15,7 @@ export const Days = () => {
   const startOfCurrMonth = days.indexOf(1);
   const lastDateOfMonth = days.lastIndexOf(new Date(year, month + 1, 0).getDate());
 
-  function renderDays(days: number[]) {
+  function renderDays() {
     const output = [];
     let i = 0;
 
@@ -24,10 +24,11 @@ export const Days = () => {
     }
 
     while (i <= lastDateOfMonth) {
-      const style = currMonth === month && days[i] === currDate ? styles.currentDay : styles.activeDay;
+      const day = i;
+      const style = currMonth === month && i === currDate ? styles.currentDay : styles.activeDay;
       output.push(
-        <Pressable style={styles.day} key={i} onPress={(e) => handleOnClick(e)}>
-          <Text style={style}>{days[i++]}</Text>
+        <Pressable style={styles.day} key={i} onPress={() => handleOnClick(day)}>
+          <Text style={style}>{i++}</Text>
         </Pressable>
       );
     }
@@ -35,18 +36,17 @@ export const Days = () => {
     return output;
   }
 
-  function handleOnClick(e: GestureResponderEvent) {
-    const {innerText} = e.target as any;
+  function handleOnClick(date: number) {
     const monthKey = MONTHS[month] + year;
     
     dispatch(openMoodModal({
-      date: parseInt(innerText),
+      date,
       monthKey,
       inactiveDays: startOfCurrMonth,
     }));
   }
 
-  return <View style={styles.daysContainer}>{renderDays(days)}</View>;
+  return <View style={styles.daysContainer}>{renderDays()}</View>;
 };
 
 const styles = StyleSheet.create({

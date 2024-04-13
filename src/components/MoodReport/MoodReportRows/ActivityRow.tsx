@@ -57,11 +57,5 @@ export const ActivityRow = () => {
     },
   ];
 
-  return (
-    <MoodReportRow
-      title={title}
-      nodes={nodes}
-      actionCreator={actionCreator}
-    />
-  );
+  return <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />;
 };
