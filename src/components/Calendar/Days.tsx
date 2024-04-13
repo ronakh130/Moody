@@ -28,7 +28,7 @@ export const Days = () => {
       const style = currMonth === month && i === currDate ? styles.currentDay : styles.activeDay;
       output.push(
         <Pressable style={styles.day} key={i} onPress={() => handleOnClick(day)}>
-          <Text style={style}>{i++}</Text>
+          <Text style={style}>{days[i++]}</Text>
         </Pressable>
       );
     }
