@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Pressable, GestureResponderEvent } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { colors } from '../../colors';

@@ -23,24 +23,35 @@ export const calendarSlice = createSlice({
       const inputYear = date.getFullYear();
       const monthKey = MONTHS[inputMonth] + inputYear;
 
-      if (!(monthKey in state.storedMonths)) {
-        state.storedMonths[monthKey] = {
-          month: inputMonth,
-          year: inputYear,
-          moods: populateDays(inputYear, inputMonth),
-        };
+      if (monthKey in state.storedMonths) {
+        const { month, year, moods } = state.storedMonths[monthKey];
+        state.month = month;
+        state.year = year;
+        state.moods = moods;
+      } else {
+        state.month = inputMonth;
+        state.year = inputYear;
+        state.moods = populateDays(inputYear, inputMonth);
       }
+    },
+    saveMonth: (state) => {
+      const { month, year, moods } = state;
+      const monthKey = MONTHS[month] + year;
 
-      const { month, year, moods } = state.storedMonths[monthKey];
-      state.month = month;
-      state.year = year;
-      state.moods = moods;
+      state.storedMonths[monthKey] = {
+        month,
+        year,
+        moods,
+      };
     },
     openMoodModal: (state, { payload }) => {
       const { date, monthKey, inactiveDays } = payload;
       const index = date + inactiveDays - 1;
-
-      state.moodModalData = state.storedMonths[monthKey].moods[index];
+      
+      state.moodModalData =
+        monthKey in state.storedMonths
+          ? state.storedMonths[monthKey].moods[index]
+          : { date };
       state.moodModalVisible = true;
     },
     closeMoodModal: (state, { payload }) => {
@@ -88,6 +99,7 @@ export const {
   setModalEmotions,
   setModalSocials,
   setModalWeather,
+  saveMonth,
 } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

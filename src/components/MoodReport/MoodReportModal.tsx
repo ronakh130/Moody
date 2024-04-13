@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Modal, Pressable, View, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { closeMoodModal } from '../../redux/calendarSlice';
+import { closeMoodModal, saveMonth } from '../../redux/calendarSlice';
 import { MoodRow } from './MoodReportRows/MoodRow';
 import { ActivityRow } from './MoodReportRows/ActivityRow';
 import { EmotionsRow } from './MoodReportRows/EmotionsRow';
@@ -17,6 +17,7 @@ export const MoodReportModal = () => {
     const days = moods.map((el) => el.date);
     const startOfCurrMonth = days.indexOf(1);
 
+    dispatch(saveMonth());
     dispatch(closeMoodModal({ inactiveDays: startOfCurrMonth }));
   }
 
