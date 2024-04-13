@@ -8,6 +8,7 @@ import { setModalMood } from '../../../redux/calendarSlice';
 export const MoodRow = () => {
   const { moodRating } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
   const title = 'How was your day?';
+  const actionCreator = setModalMood;
   const nodes = [
     {
       Icon: FaRegFaceTired,
@@ -39,9 +40,8 @@ export const MoodRow = () => {
   return (
     <MoodReportRow
       title={title}
-      nodes={nodes.map((node) => {
-        return { ...node, actionCreator: setModalMood };
-      })}
+      nodes={nodes}
+      actionCreator={actionCreator}
     />
   );
 };

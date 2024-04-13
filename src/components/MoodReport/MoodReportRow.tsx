@@ -1,13 +1,15 @@
 import { StyleSheet, View } from 'react-native';
 import { MoodNode, MoodNodeProps } from './MoodNode';
 import { StyledHeaderText } from '../StyledHeaderText';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 export interface MoodReportRowProps {
   title: string;
-  nodes: MoodNodeProps[];
+  nodes: Omit<MoodNodeProps, 'actionCreator'>[];
+  actionCreator: ActionCreatorWithPayload<any, string>;
 }
 
-export const MoodReportRow = ({ title, nodes }: MoodReportRowProps) => {
+export const MoodReportRow = ({ title, nodes, actionCreator}: MoodReportRowProps) => {
   return (
     <View style={styles.rowContainer}>
       <View style={styles.titleContainer}>
@@ -15,7 +17,7 @@ export const MoodReportRow = ({ title, nodes }: MoodReportRowProps) => {
       </View>
       <View style={styles.nodeContainer}>
         {nodes.map((node, i) => {
-          const { label, selected, actionCreator } = node;
+          const { label, selected } = node;
           return <MoodNode Icon={node.Icon} label={label} selected={selected} actionCreator={actionCreator} key={i} />;
         })}
       </View>

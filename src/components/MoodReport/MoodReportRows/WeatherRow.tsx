@@ -10,6 +10,7 @@ import { setModalWeather } from '../../../redux/calendarSlice';
 export const WeatherRow = () => {
   const { weather } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
   const title = 'Weather';
+  const actionCreator = setModalWeather;
   const nodes = [
     {
       Icon: IoSunny,
@@ -41,9 +42,8 @@ export const WeatherRow = () => {
   return (
     <MoodReportRow
       title={title}
-      nodes={nodes.map((node) => {
-        return { ...node, actionCreator: setModalWeather };
-      })}
+      nodes={nodes}
+      actionCreator={actionCreator}
     />
   );
 };

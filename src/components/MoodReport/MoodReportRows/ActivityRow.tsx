@@ -13,6 +13,7 @@ import { setModalActivites } from '../../../redux/calendarSlice';
 export const ActivityRow = () => {
   const { activities } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
   const title = 'Activities';
+  const actionCreator = setModalActivites;
   const nodes = [
     {
       Icon: FaWalking,
@@ -59,9 +60,8 @@ export const ActivityRow = () => {
   return (
     <MoodReportRow
       title={title}
-      nodes={nodes.map((node) => {
-        return { ...node, actionCreator: setModalActivites };
-      })}
+      nodes={nodes}
+      actionCreator={actionCreator}
     />
   );
 };

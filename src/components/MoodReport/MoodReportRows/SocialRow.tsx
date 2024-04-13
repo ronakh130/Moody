@@ -11,6 +11,7 @@ import { setModalSocials } from '../../../redux/calendarSlice';
 export const SocialRow = () => {
   const { social } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
   const title = 'Social';
+  const actionCreator = setModalSocials;
   const nodes = [
     {
       Icon: FaPeopleGroup,
@@ -42,9 +43,8 @@ export const SocialRow = () => {
   return (
     <MoodReportRow
       title={title}
-      nodes={nodes.map((node) => {
-        return { ...node, actionCreator: setModalSocials };
-      })}
+      nodes={nodes}
+      actionCreator={actionCreator}
     />
   );
 };

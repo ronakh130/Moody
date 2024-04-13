@@ -13,6 +13,7 @@ import { setModalEmotions } from '../../../redux/calendarSlice';
 export const EmotionsRow = () => {
   const { emotions } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
   const title = 'Emotions';
+  const actionCreator = setModalEmotions;
   const nodes = [
     {
       Icon: GiFlowerPot,
@@ -59,9 +60,8 @@ export const EmotionsRow = () => {
   return (
     <MoodReportRow
       title={title}
-      nodes={nodes.map((node) => {
-        return { ...node, actionCreator: setModalEmotions };
-      })}
+      nodes={nodes}
+      actionCreator={actionCreator}
     />
   );
 };
