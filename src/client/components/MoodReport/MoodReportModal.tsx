@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Modal, Pressable, View, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { closeMoodModal, saveMonth } from '../../redux/calendarSlice';
+import { closeMoodModal, saveMonth,  } from '../../redux/calendarSlice';
 import { MoodRow } from './MoodReportRows/MoodRow';
 import { ActivityRow } from './MoodReportRows/ActivityRow';
 import { EmotionsRow } from './MoodReportRows/EmotionsRow';

@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import { Calendar } from './src/components/Calendar/Calendar';
+import { Calendar } from './src/client/components/Calendar/Calendar';
 import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
-import { store } from './src/redux/store';
-import { MoodReportModal } from './src/components/MoodReport/MoodReportModal';
+import { store } from './src/client/redux/store';
+import { MoodReportModal } from './src/client/components/MoodReport/MoodReportModal';
 
 export function App() {
   return (
