@@ -16,6 +16,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "App.js"],
+  "include": ["src", "src/client/App.js"],
   "extends": "@tsconfig/react-native/tsconfig.json"
 }

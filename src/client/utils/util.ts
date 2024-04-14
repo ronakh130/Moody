@@ -1,4 +1,4 @@
-import { MoodReport } from "./interfaces/MoodReportTypes";
+import { MoodReport } from '../interfaces/MoodReportTypes';
 
 export function populateDays(year: number, month: number): MoodReport[] {
   const firstDayOfMonth = new Date(year, month, 1).getDay();

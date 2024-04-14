@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { populateDays } from '../util';
+import { populateDays } from '../utils/util';
 import { Calendar, MONTHS } from '../interfaces/CalendarTypes';
 
 const initialState: Calendar = {
@@ -47,7 +47,7 @@ export const calendarSlice = createSlice({
     openMoodModal: (state, { payload }) => {
       const { date, monthKey, inactiveDays } = payload;
       const index = date + inactiveDays - 1;
-      
+
       state.moodModalData =
         monthKey in state.storedMonths
           ? state.storedMonths[monthKey].moods[index]
