@@ -4,10 +4,11 @@
     "slug": "moody",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./public/assets/icon.png",
+    "entryPoint": "./src/client/App.js",
+    "icon": "./src/client/public/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./public/assets/splash.png",
+      "image": "./src/client/public/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,12 +18,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./public/assets/adaptive-icon.png",
+        "foregroundImage": "./src/client/public/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./public/assets/favicon.png"
+      "favicon": "./src/client/public/assets/favicon.png"
     },
     "extra": {
       "eas": {
