@@ -38,6 +38,7 @@ export const calendarSlice = createSlice({
       const { month, year, moods } = state;
       const monthKey = MONTHS[month] + year;
 
+      if(monthKey in state.storedMonths) return;
       state.storedMonths[monthKey] = {
         month,
         year,
