@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { colors } from '../../utils/colors';
+import { colors } from '../../utils/styles';
 import { MONTHS } from '../../interfaces/CalendarTypes';
 import { openMoodModal } from '../../redux/calendarSlice';
 

@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { MoodNode, MoodNodeProps } from './MoodNode';
 import { StyledHeaderText } from '../StyledHeaderText';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { colors } from '../../utils/styles';
 
 export interface MoodReportRowProps {
   title: string;
@@ -9,7 +10,7 @@ export interface MoodReportRowProps {
   actionCreator: ActionCreatorWithPayload<any, string>;
 }
 
-export const MoodReportRow = ({ title, nodes, actionCreator}: MoodReportRowProps) => {
+export const MoodReportRow = ({ title, nodes, actionCreator }: MoodReportRowProps) => {
   return (
     <View style={styles.rowContainer}>
       <View style={styles.titleContainer}>
@@ -18,7 +19,15 @@ export const MoodReportRow = ({ title, nodes, actionCreator}: MoodReportRowProps
       <View style={styles.nodeContainer}>
         {nodes.map((node, i) => {
           const { label, selected } = node;
-          return <MoodNode Icon={node.Icon} label={label} selected={selected} actionCreator={actionCreator} key={i} />;
+          return (
+            <MoodNode
+              Icon={node.Icon}
+              label={label}
+              selected={selected}
+              actionCreator={actionCreator}
+              key={i}
+            />
+          );
         })}
       </View>
     </View>
@@ -31,7 +40,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     marginHorizontal: 30,
     padding: 30,
-    backgroundColor: 'orange',
+    backgroundColor: colors.appAccent,
     borderRadius: 10,
     width: 365,
   },
