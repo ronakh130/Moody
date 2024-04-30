@@ -4,7 +4,7 @@ export type LoginValues = {
 };
 
 export type SignUpValues = {
-  firstName: string;
+  name: string;
   email: string;
   password: string;
 };
