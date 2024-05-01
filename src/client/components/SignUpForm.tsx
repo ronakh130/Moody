@@ -8,7 +8,6 @@ export const SignUpForm = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors },
     watch
   } = useForm({
     defaultValues: {
@@ -23,8 +22,6 @@ export const SignUpForm = () => {
   const onSubmit: SubmitHandler<SignUpValues> = (data) => {
     console.log(data);
   };
-
-  console.log({errors});
   
   return (
     <View style={styles.container}>
@@ -97,7 +94,7 @@ export const SignUpForm = () => {
       {password !== repeatPassword && <StyledText style={styles.alert}>Passwords don't match!</StyledText>}
 
       <Pressable style={styles.signUpButton} onPress={handleSubmit(onSubmit)} disabled={password !== repeatPassword}>
-        <StyledText style={{ color: colors.appBackground }}>Sign Up</StyledText>
+        <StyledText style={{ color: colors.appBackground, fontSize: 20 }}>Sign Up</StyledText>
       </Pressable>
     </View>
   );
@@ -107,6 +104,7 @@ const styles = StyleSheet.create({
   label: {
     color: colors.appAccentDark,
     marginVertical: 15,
+    fontSize: 20,
   },
   loginButton: {
     ...baseCenterFlexStyle,

@@ -8,13 +8,16 @@ import { MoodReportModal } from './components/MoodReport/MoodReportModal';
 import { CalendarPage } from './pages/CalendarPage';
 import { colors } from './utils/styles';
 import { LoginPage } from './pages/LoginPage';
+import { SignUpPage } from './pages/SignUpPage';
 
 export default function App() {
   return (
     <StrictMode>
       <Provider store={store}>
         <SafeAreaView style={styles.page}>
-          <LoginPage />
+          <CalendarPage />
+          {/* <LoginPage /> */}
+          {/* <SignUpPage /> */}
         </SafeAreaView>
       </Provider>
     </StrictMode>

@@ -8,7 +8,6 @@ export const LoginForm = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors },
   } = useForm({
     defaultValues: {
       email: '',
@@ -19,8 +18,6 @@ export const LoginForm = () => {
   const onSubmit: SubmitHandler<LoginValues> = (data) => {
     console.log(data);
   };
-
-  console.log('errors', errors);
 
   return (
     <View style={styles.container}>
@@ -58,11 +55,11 @@ export const LoginForm = () => {
         rules={{ required: true }}
       />
       <Pressable style={styles.loginButton} onPress={handleSubmit(onSubmit)}>
-        <StyledText style={{ color: colors.appAccentDark }}>Login</StyledText>
+        <StyledText style={{ color: colors.appAccentDark, fontSize: 20 }}>Login</StyledText>
       </Pressable>
 
       <Pressable style={styles.signUpButton} onPress={handleSubmit(onSubmit)}>
-        <StyledText style={{ color: colors.appBackground }}>Sign Up</StyledText>
+        <StyledText style={{ color: colors.appBackground, fontSize: 20 }}>Sign Up</StyledText>
       </Pressable>
     </View>
   );
@@ -72,6 +69,7 @@ const styles = StyleSheet.create({
   label: {
     color: colors.appAccentDark,
     marginVertical: 15,
+    fontSize: 20,
   },
   loginButton: {
     ...baseCenterFlexStyle,

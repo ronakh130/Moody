@@ -88,6 +88,9 @@ export const calendarSlice = createSlice({
     setModalWeather: (state, { payload }) => {
       state.moodModalData.weather = payload;
     },
+    setModalComments: (state, {payload}) => {
+      state.moodModalData.comments = payload;
+    }
   },
 });
 
@@ -101,6 +104,7 @@ export const {
   setModalSocials,
   setModalWeather,
   saveMonth,
+  setModalComments
 } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

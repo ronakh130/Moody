@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 import { MoodNode, MoodNodeProps } from './MoodNode';
-import { StyledHeaderText } from '../StyledHeaderText';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { colors } from '../../utils/styles';
+import { StyledText } from '../StyledText';
 
 export interface MoodReportRowProps {
   title: string;
@@ -14,7 +14,7 @@ export const MoodReportRow = ({ title, nodes, actionCreator }: MoodReportRowProp
   return (
     <View style={styles.rowContainer}>
       <View style={styles.titleContainer}>
-        <StyledHeaderText>{title}</StyledHeaderText>
+        <StyledText style={{fontSize: 25}}>{title}</StyledText>
       </View>
       <View style={styles.nodeContainer}>
         {nodes.map((node, i) => {

@@ -7,11 +7,12 @@ import { ActivityRow } from './MoodReportRows/ActivityRow';
 import { EmotionsRow } from './MoodReportRows/EmotionsRow';
 import { SocialRow } from './MoodReportRows/SocialRow';
 import { WeatherRow } from './MoodReportRows/WeatherRow';
+import { CommentsRow } from './MoodReportRows/CommentsRow';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
   const { moodModalVisible, moods } = useSelector((state: RootState) => state.calendarReducer);
-  const moodReportRows = [MoodRow(), WeatherRow(), EmotionsRow(), SocialRow(), ActivityRow()];
+  const moodReportRows = [MoodRow(), WeatherRow(), EmotionsRow(), SocialRow(), ActivityRow(), CommentsRow()];
 
   function handleClose() {
     const days = moods.map((el) => el.date);
