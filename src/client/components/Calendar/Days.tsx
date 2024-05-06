@@ -26,7 +26,7 @@ export const Days = () => {
     while (i <= lastDateOfMonth) {
       const day = days[i];
       const style =
-        currMonth === month && i === currDate ? styles.currentDay : styles.activeDay;
+        currMonth === month && day === currDate ? styles.currentDay : styles.activeDay;
       output.push(
         <Pressable style={styles.day} key={i++} onPress={() => handleOnClick(day)}>
           <Text style={style}>{day}</Text>
