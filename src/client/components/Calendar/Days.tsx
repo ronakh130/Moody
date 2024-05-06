@@ -39,8 +39,6 @@ export const Days = () => {
 
   function handleOnClick(date: number) {
     const monthKey = MONTHS[month] + year;
-    console.log({date});
-    
 
     dispatch(
       openMoodModal({
