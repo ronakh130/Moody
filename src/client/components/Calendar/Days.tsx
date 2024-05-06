@@ -24,12 +24,12 @@ export const Days = () => {
     }
 
     while (i <= lastDateOfMonth) {
-      const day = i;
+      const day = days[i];
       const style =
         currMonth === month && i === currDate ? styles.currentDay : styles.activeDay;
       output.push(
-        <Pressable style={styles.day} key={i} onPress={() => handleOnClick(day)}>
-          <Text style={style}>{days[i++]}</Text>
+        <Pressable style={styles.day} key={i++} onPress={() => handleOnClick(day)}>
+          <Text style={style}>{day}</Text>
         </Pressable>
       );
     }
@@ -39,6 +39,8 @@ export const Days = () => {
 
   function handleOnClick(date: number) {
     const monthKey = MONTHS[month] + year;
+    console.log({date});
+    
 
     dispatch(
       openMoodModal({
