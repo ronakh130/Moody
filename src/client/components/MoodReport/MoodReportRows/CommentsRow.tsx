@@ -22,7 +22,6 @@ export const CommentsRow = () => {
         }}
         value={comments}
         multiline
-        numberOfLines={4}
         autoCapitalize='none'
         autoCorrect={false}
       />
