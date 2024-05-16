@@ -4,7 +4,6 @@
     "slug": "moody",
     "version": "1.0.0",
     "orientation": "portrait",
-    "entryPoint": "./src/client/App.js",
     "icon": "./src/client/public/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
