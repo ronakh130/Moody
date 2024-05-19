@@ -1,65 +1,79 @@
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { View, TextInput, StyleSheet, Pressable } from 'react-native';
+import { View, TextInput, StyleSheet, Pressable, Alert } from 'react-native';
 import { baseCenterFlexStyle, colors, sizes } from '../utils/styles';
 import { StyledText } from './StyledText';
-import { LoginValues } from '../interfaces/LoginTypes';
+import { useState } from 'react';
+import { supabase } from '../lib/supabase';
 
 export const LoginForm = () => {
-  const {
-    handleSubmit,
-    control,
-  } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<LoginValues> = (data) => {
-    console.log(data);
-  };
+  function validateEmail() {
+    return email.includes('@') && email.includes('.');
+  }
+
+  async function signInWithEmail() {
+    if (!validateEmail) return Alert.alert('Please use a real email');
+    if (password.length < 6)
+      return Alert.alert('Please use a password longer than 6 characters');
+
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setLoading(false);
+
+    if (error) return Alert.alert(error.message);
+  }
+
+  async function signUpWithEmail() {
+    if (!validateEmail) return Alert.alert('Please use a real email');
+    if (password.length < 6)
+      return Alert.alert('Please use a password longer than 6 characters');
+
+    setLoading(true);
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    setLoading(false);
+
+    if (error) return Alert.alert(error.message);
+    if (!session) Alert.alert('Please check your inbox for email verification!');
+  }
 
   return (
     <View style={styles.container}>
       <StyledText style={styles.label}>Email</StyledText>
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={(value) => onChange(value)}
-            value={value}
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-        )}
-        name='email'
-        rules={{ required: true }}
+      <TextInput
+        style={styles.input}
+        onChangeText={(value) => setEmail(value)}
+        autoCapitalize='none'
+        autoCorrect={false}
       />
       <StyledText style={styles.label}>Password</StyledText>
-      <Controller
-        control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={(value) => onChange(value)}
-            value={value}
-            autoCapitalize='none'
-            autoCorrect={false}
-            secureTextEntry={true}
-          />
-        )}
-        name='password'
-        rules={{ required: true }}
+      <TextInput
+        style={styles.input}
+        onChangeText={(value) => setPassword(value)}
+        autoCapitalize='none'
+        autoCorrect={false}
+        secureTextEntry={true}
       />
-      <Pressable style={styles.loginButton} onPress={handleSubmit(onSubmit)}>
-        <StyledText style={{ color: colors.appAccentDark, fontSize: 20 }}>Login</StyledText>
+      <Pressable style={styles.loginButton} onPress={signInWithEmail} disabled={loading}>
+        <StyledText style={{ color: colors.appAccentDark, fontSize: 20 }}>
+          Login
+        </StyledText>
       </Pressable>
 
-      <Pressable style={styles.signUpButton} onPress={handleSubmit(onSubmit)}>
-        <StyledText style={{ color: colors.appBackground, fontSize: 20 }}>Sign Up</StyledText>
+      <Pressable style={styles.signUpButton} onPress={signUpWithEmail} disabled={loading}>
+        <StyledText style={{ color: colors.appBackground, fontSize: 20 }}>
+          Sign Up
+        </StyledText>
       </Pressable>
     </View>
   );

@@ -1,16 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { AppState, SafeAreaView, StyleSheet, View } from 'react-native';
-import { Calendar } from './components/Calendar/Calendar';
-import { StrictMode } from 'react';
+import { AppState, SafeAreaView, StyleSheet } from 'react-native';
+import { StrictMode, useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { MoodReportModal } from './components/MoodReport/MoodReportModal';
 import { CalendarPage } from './pages/CalendarPage';
 import { colors } from './utils/styles';
 import { LoginPage } from './pages/LoginPage';
-import { SignUpPage } from './pages/SignUpPage';
 import { supabase } from './lib/supabase';
 import { registerRootComponent } from 'expo';
+import { Session } from '@supabase/supabase-js';
 
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
@@ -21,13 +19,25 @@ AppState.addEventListener('change', (state) => {
 });
 
 function App() {
+  const [session, setSession] = useState<Session | null>(null);
+  console.log(session);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
   return (
     <StrictMode>
       <Provider store={store}>
         <SafeAreaView style={styles.page}>
-          {/* <CalendarPage /> */}
-          <LoginPage />
-          {/* <SignUpPage /> */}
+          {session && session.user ? <CalendarPage /> : <LoginPage />}
+          <StatusBar />
         </SafeAreaView>
       </Provider>
     </StrictMode>

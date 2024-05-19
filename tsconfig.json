@@ -18,6 +18,6 @@
     "outDir": "./dist",
     "esModuleInterop": true,
   },
-  "include": ["src", "src/client/App.js"],
+  "include": ["src", "src/client/App.tsx"],
   "extends": "@tsconfig/react-native/tsconfig.json"
 }
