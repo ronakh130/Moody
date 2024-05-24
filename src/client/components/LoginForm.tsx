@@ -9,12 +9,12 @@ export const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  function validateEmail() {
+  function validEmail() {
     return email.includes('@') && email.includes('.');
   }
 
   async function signInWithEmail() {
-    if (!validateEmail) return Alert.alert('Please use a real email');
+    if (!validEmail) return Alert.alert('Please use a real email');
     if (password.length < 6)
       return Alert.alert('Please use a password longer than 6 characters');
 
@@ -29,7 +29,7 @@ export const LoginForm = () => {
   }
 
   async function signUpWithEmail() {
-    if (!validateEmail) return Alert.alert('Please use a real email');
+    if (!validEmail) return Alert.alert('Please use a real email');
     if (password.length < 6)
       return Alert.alert('Please use a password longer than 6 characters');
 
