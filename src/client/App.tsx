@@ -20,7 +20,6 @@ AppState.addEventListener('change', (state) => {
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
-  console.log(session);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {

@@ -2,7 +2,7 @@ import { View, TextInput, StyleSheet, Pressable } from 'react-native';
 import { baseCenterFlexStyle, colors, sizes } from '../utils/styles';
 import { StyledText } from './StyledText';
 import { useState } from 'react';
-import { authController } from '../controllers/loginController';
+import { authController } from '../controllers/authController';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
