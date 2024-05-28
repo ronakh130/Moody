@@ -8,6 +8,7 @@ import { EmotionsRow } from './MoodReportRows/EmotionsRow';
 import { SocialRow } from './MoodReportRows/SocialRow';
 import { WeatherRow } from './MoodReportRows/WeatherRow';
 import { CommentsRow } from './MoodReportRows/CommentsRow';
+import { getDateFromDateString } from '../../utils/util';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export const MoodReportModal = () => {
   const moodReportRows = [MoodRow(), WeatherRow(), EmotionsRow(), SocialRow(), ActivityRow(), CommentsRow()];
 
   function handleClose() {
-    const days = moods.map((el) => el.date);
+    const days = moods.map((el) => getDateFromDateString(el.date));
     const startOfCurrMonth = days.indexOf(1);
 
     dispatch(saveMonth());

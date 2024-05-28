@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AuthState } from '../interfaces/AuthTypes';
 
 const initialState: AuthState = {
+  session: null,
   userId: '',
 };
 
@@ -12,11 +13,15 @@ export const auth = createSlice({
     saveUserId: (state, {payload}) => {
       state.userId = payload;
     },
+    setSession: (state, {payload}) => {
+      state.session = payload;
+    }
   },
 });
 
 export const {
-  saveUserId
+  saveUserId,
+  setSession,
 } = auth.actions;
 
 export default auth.reducer;

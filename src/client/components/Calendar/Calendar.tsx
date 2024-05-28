@@ -1,18 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import { CalendarTitle } from './CalendarTitle';
 import { DayNames } from './DayNames';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { setMonth } from '../../redux/calendarSlice';
 import { Days } from './Days';
 
 export const Calendar = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setMonth(new Date()));
-  }, []);
-
   return (
     <View style={styles.container}>
       <CalendarTitle />

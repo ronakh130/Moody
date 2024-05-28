@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { populateDays } from '../utils/util';
+import { formatDateParts, getDateFromDateString, populateDays } from '../utils/util';
 import { Calendar, MONTHS } from '../interfaces/CalendarTypes';
 
 const initialState: Calendar = {
@@ -9,7 +9,7 @@ const initialState: Calendar = {
   storedMonths: {},
   moodModalVisible: false,
   moodModalData: {
-    date: 1,
+    date: '2024-01-30',
   },
 };
 
@@ -38,7 +38,7 @@ export const calendarSlice = createSlice({
       const { month, year, moods } = state;
       const monthKey = MONTHS[month] + year;
 
-      if(monthKey in state.storedMonths) return;
+      if (monthKey in state.storedMonths) return;
       state.storedMonths[monthKey] = {
         month,
         year,
@@ -46,20 +46,21 @@ export const calendarSlice = createSlice({
       };
     },
     openMoodModal: (state, { payload }) => {
-      const { date, monthKey, inactiveDays } = payload;
+      const { date, month, year, inactiveDays } = payload;
+      const monthKey = MONTHS[month] + year;
       const index = date + inactiveDays - 1;
 
       state.moodModalData =
         monthKey in state.storedMonths
           ? state.storedMonths[monthKey].moods[index]
-          : { date };
+          : { date: formatDateParts(year, month, date) };
       state.moodModalVisible = true;
     },
     closeMoodModal: (state, { payload }) => {
       const { inactiveDays } = payload;
       const { date } = state.moodModalData;
       const monthKey = MONTHS[state.month] + state.year;
-      const index = date + inactiveDays - 1;
+      const index = getDateFromDateString(date) + inactiveDays - 1;
 
       state.storedMonths[monthKey].moods[index] = state.moodModalData;
       state.moodModalVisible = false;
@@ -88,9 +89,9 @@ export const calendarSlice = createSlice({
     setModalWeather: (state, { payload }) => {
       state.moodModalData.weather = payload;
     },
-    setModalComments: (state, {payload}) => {
+    setModalComments: (state, { payload }) => {
       state.moodModalData.comments = payload;
-    }
+    },
   },
 });
 
@@ -104,7 +105,7 @@ export const {
   setModalSocials,
   setModalWeather,
   saveMonth,
-  setModalComments
+  setModalComments,
 } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

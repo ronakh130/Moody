@@ -2,14 +2,14 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { colors } from '../../utils/styles';
-import { MONTHS } from '../../interfaces/CalendarTypes';
 import { openMoodModal } from '../../redux/calendarSlice';
+import { getDateFromDateString } from '../../utils/util';
 
 export const Days = () => {
   const dispatch = useDispatch();
   const { moods, year, month } = useSelector((state: RootState) => state.calendarReducer);
   const date = new Date();
-  const days = moods.map((el) => el.date);
+  const days = moods.map((el) => getDateFromDateString(el.date));
   const currDate = date.getDate();
   const currMonth = date.getMonth();
   const startOfCurrMonth = days.indexOf(1);
@@ -38,12 +38,11 @@ export const Days = () => {
   }
 
   function handleOnClick(date: number) {
-    const monthKey = MONTHS[month] + year;
-
     dispatch(
       openMoodModal({
         date,
-        monthKey,
+        month, 
+        year,
         inactiveDays: startOfCurrMonth,
       })
     );

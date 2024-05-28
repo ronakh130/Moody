@@ -1,5 +1,6 @@
+
 export interface MoodReport {
-  date: number;
+  date: string;
   moodRating?: MoodRating;
   activities?: Set<Activities>;
   weather?: Weather;
