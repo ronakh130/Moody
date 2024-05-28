@@ -10,17 +10,14 @@ export const auth = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    saveUserId: (state, {payload}) => {
-      state.userId = payload;
-    },
     setSession: (state, {payload}) => {
       state.session = payload;
+      state.userId = payload.user.id;
     }
   },
 });
 
 export const {
-  saveUserId,
   setSession,
 } = auth.actions;
 
