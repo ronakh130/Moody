@@ -12,34 +12,36 @@ import { MoodReportRow } from '../MoodReportRow';
 import { setModalMood } from '../../../redux/calendarSlice';
 
 export const MoodRow = () => {
-  const { moodRating } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
+  const { mood_rating } = useSelector(
+    (state: RootState) => state.calendarReducer.moodModalData
+  );
   const title = 'How was your day?';
   const actionCreator = setModalMood;
   const nodes = [
     {
       Icon: FaRegFaceTired,
       label: MoodRating.awful,
-      selected: moodRating === MoodRating.awful,
+      selected: mood_rating === MoodRating.awful,
     },
     {
       Icon: FaRegFaceFrown,
       label: MoodRating.bad,
-      selected: moodRating === MoodRating.bad,
+      selected: mood_rating === MoodRating.bad,
     },
     {
       Icon: FaRegFaceMeh,
       label: MoodRating.meh,
-      selected: moodRating === MoodRating.meh,
+      selected: mood_rating === MoodRating.meh,
     },
     {
       Icon: FaRegFaceSmile,
       label: MoodRating.good,
-      selected: moodRating === MoodRating.good,
+      selected: mood_rating === MoodRating.good,
     },
     {
       Icon: FaRegFaceLaughBeam,
       label: MoodRating.great,
-      selected: moodRating === MoodRating.great,
+      selected: mood_rating === MoodRating.great,
     },
   ];
 

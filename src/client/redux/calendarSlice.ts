@@ -66,7 +66,7 @@ export const calendarSlice = createSlice({
       state.moodModalVisible = false;
     },
     setModalMood: (state, { payload }) => {
-      state.moodModalData.moodRating = payload;
+      state.moodModalData.mood_rating = payload;
     },
     setModalActivites: (state, { payload }) => {
       const set = state.moodModalData.activities ?? new Set();

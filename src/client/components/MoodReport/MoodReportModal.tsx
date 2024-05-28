@@ -9,16 +9,20 @@ import { SocialRow } from './MoodReportRows/SocialRow';
 import { WeatherRow } from './MoodReportRows/WeatherRow';
 import { CommentsRow } from './MoodReportRows/CommentsRow';
 import { getDateFromDateString } from '../../utils/util';
+import { calendarController } from '../../controllers/calendarController';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
-  const { moodModalVisible, moods } = useSelector((state: RootState) => state.calendarReducer);
+  const { moodModalVisible, moods, moodModalData } = useSelector((state: RootState) => state.calendarReducer);
+  const { userId } = useSelector((state: RootState) => state.authReducer);
   const moodReportRows = [MoodRow(), WeatherRow(), EmotionsRow(), SocialRow(), ActivityRow(), CommentsRow()];
 
   function handleClose() {
     const days = moods.map((el) => getDateFromDateString(el.date));
     const startOfCurrMonth = days.indexOf(1);
 
+    calendarController.submitMoodReport(userId, moodModalData);
+    
     dispatch(saveMonth());
     dispatch(closeMoodModal({ inactiveDays: startOfCurrMonth }));
   }
