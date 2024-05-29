@@ -33,7 +33,6 @@ export const calendarController = {
       .from('mood_report')
       .upsert({
         ...data,
-        mood_report_id: userId + ':' + data.date,
         user_id: userId,
         activities: JSON.stringify(data.activities),
         emotions: JSON.stringify(data.emotions),
