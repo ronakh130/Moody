@@ -8,6 +8,7 @@ export const colors = {
   calCurrentDay: 'red',
   calActiveDays: 'black',
   calInactiveDays: 'grey',
+  button: '#2575de',
 };
 
 export const sizes = {

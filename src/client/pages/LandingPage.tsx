@@ -12,7 +12,6 @@ import { calendarController } from '../controllers/calendarController';
 export const LandingPage = () => {
   const dispatch = useDispatch();
   const { session } = useSelector((state: RootState) => state.authReducer);
-  const { storedMonths } = useSelector((state: RootState) => state.calendarReducer);
   
   useEffect(() => {
     dispatch(setMonth(new Date()));

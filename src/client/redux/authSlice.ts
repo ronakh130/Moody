@@ -12,7 +12,7 @@ export const auth = createSlice({
   reducers: {
     setSession: (state, {payload}) => {
       state.session = payload;
-      state.userId = payload.user.id;
+      if(payload) state.userId = payload.user.id;
     }
   },
 });
