@@ -1,11 +1,11 @@
 export interface MoodReport {
   date: string;
   mood_rating?: MoodRating;
-  activities?: Set<Activities>;
+  activities?: Record<string, Activities>;
   weather?: Weather;
   sleep?: Sleep;
-  social?: Set<Social>;
-  emotions?: Set<Emotions>;
+  social?: Record<string, Social>;
+  emotions?: Record<string, Emotions>;
   comments?: string;
   pictures?: string[];
 }

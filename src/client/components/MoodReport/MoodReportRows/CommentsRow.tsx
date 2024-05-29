@@ -11,7 +11,7 @@ export const CommentsRow = () => {
   const { comments } = useSelector(
     (state: RootState) => state.calendarReducer.moodModalData
   );
-
+  
   return (
     <View style={styles.rowContainer}>
       <StyledText style={styles.title}>Comments</StyledText>
@@ -20,7 +20,7 @@ export const CommentsRow = () => {
         onChangeText={(text) => {
           dispatch(setModalComments(text));
         }}
-        value={comments}
+        value={comments ?? ''}
         multiline
         autoCapitalize='none'
         autoCorrect={false}

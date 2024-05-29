@@ -18,42 +18,42 @@ export const ActivityRow = () => {
     {
       Icon: FaWalking,
       label: Activities.walk,
-      selected: activities?.has(Activities.walk),
+      selected: activities && Activities.walk in activities,
     },
     {
       Icon: PiTelevisionSimpleBold,
       label: Activities.tv,
-      selected: activities?.has(Activities.tv),
+      selected: activities && Activities.tv in activities,
     },
     {
       Icon: FaBook,
       label: Activities.read,
-      selected: activities?.has(Activities.read),
+      selected: activities && Activities.read in activities,
     },
     {
       Icon: PiCookingPot,
       label: Activities.cook,
-      selected: activities?.has(Activities.cook),
+      selected: activities && Activities.cook in activities,
     },
     {
       Icon: FaGamepad,
       label: Activities.game,
-      selected: activities?.has(Activities.game),
+      selected: activities && Activities.game in activities,
     },
     {
       Icon: HiOutlinePaintBrush,
       label: Activities.art,
-      selected: activities?.has(Activities.art),
+      selected: activities && Activities.art in activities,
     },
     {
       Icon: BiRun,
       label: Activities.sports,
-      selected: activities?.has(Activities.sports),
+      selected: activities && Activities.sports in activities,
     },
     {
       Icon: RiZzzFill,
       label: Activities.relax,
-      selected: activities?.has(Activities.relax),
+      selected: activities && Activities.relax in activities,
     },
   ];
 

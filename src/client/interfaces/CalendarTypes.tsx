@@ -1,15 +1,12 @@
 import { MoodReport } from "./MoodReportTypes";
 
-export interface Calendar extends MonthRecord {
-  storedMonths: Record<string, MonthRecord>;
-  moodModalVisible: boolean;
-  moodModalData: MoodReport;
-}
-
-export interface MonthRecord {
+export interface Calendar {
   month: number;
   year: number;
   moods: MoodReport[];
+  storedMonths: Record<string, MoodReport[]>;
+  moodModalVisible: boolean;
+  moodModalData: MoodReport;
 }
 
 export enum DayOTW {

@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { formatDateParts, getDateFromDateString, populateDays } from '../utils/util';
+import {
+  formatDateParts,
+  getDateFromDateString,
+  getMonthFromDateString,
+  getYearFromDateString,
+  populateDays,
+} from '../utils/util';
 import { Calendar, MONTHS } from '../interfaces/CalendarTypes';
+import { MoodReport } from '../interfaces/MoodReportTypes';
 
 const initialState: Calendar = {
   month: 0,
@@ -24,26 +31,19 @@ export const calendarSlice = createSlice({
       const monthKey = MONTHS[inputMonth] + inputYear;
 
       if (monthKey in state.storedMonths) {
-        const { month, year, moods } = state.storedMonths[monthKey];
-        state.month = month;
-        state.year = year;
-        state.moods = moods;
+        state.moods = state.storedMonths[monthKey];
       } else {
-        state.month = inputMonth;
-        state.year = inputYear;
         state.moods = populateDays(inputYear, inputMonth);
       }
+      state.month = inputMonth;
+      state.year = inputYear;
     },
     saveMonth: (state) => {
       const { month, year, moods } = state;
       const monthKey = MONTHS[month] + year;
 
       if (monthKey in state.storedMonths) return;
-      state.storedMonths[monthKey] = {
-        month,
-        year,
-        moods,
-      };
+      state.storedMonths[monthKey] = moods;
     },
     openMoodModal: (state, { payload }) => {
       const { date, month, year, inactiveDays } = payload;
@@ -52,7 +52,7 @@ export const calendarSlice = createSlice({
 
       state.moodModalData =
         monthKey in state.storedMonths
-          ? state.storedMonths[monthKey].moods[index]
+          ? state.storedMonths[monthKey][index]
           : { date: formatDateParts(year, month, date) };
       state.moodModalVisible = true;
     },
@@ -62,35 +62,57 @@ export const calendarSlice = createSlice({
       const monthKey = MONTHS[state.month] + state.year;
       const index = getDateFromDateString(date) + inactiveDays - 1;
 
-      state.storedMonths[monthKey].moods[index] = state.moodModalData;
+      state.storedMonths[monthKey][index] = state.moodModalData;
       state.moodModalVisible = false;
     },
     setModalMood: (state, { payload }) => {
       state.moodModalData.mood_rating = payload;
     },
     setModalActivites: (state, { payload }) => {
-      const set = state.moodModalData.activities ?? new Set();
+      const obj = state.moodModalData.activities ?? {};
 
-      set.has(payload) ? set.delete(payload) : set.add(payload);
-      state.moodModalData.activities = set;
+      obj[payload] ? delete obj[payload] : (obj[payload] = payload);
+      state.moodModalData.activities = obj;
     },
     setModalEmotions: (state, { payload }) => {
-      const set = state.moodModalData.emotions ?? new Set();
+      const obj = state.moodModalData.emotions ?? {};
 
-      set.has(payload) ? set.delete(payload) : set.add(payload);
-      state.moodModalData.emotions = set;
+      obj[payload] ? delete obj[payload] : (obj[payload] = payload);
+      state.moodModalData.emotions = obj;
     },
     setModalSocials: (state, { payload }) => {
-      const set = state.moodModalData.social ?? new Set();
+      const obj = state.moodModalData.social ?? {};
 
-      set.has(payload) ? set.delete(payload) : set.add(payload);
-      state.moodModalData.social = set;
+      obj[payload] ? delete obj[payload] : (obj[payload] = payload);
+      state.moodModalData.social = obj;
     },
     setModalWeather: (state, { payload }) => {
       state.moodModalData.weather = payload;
     },
     setModalComments: (state, { payload }) => {
       state.moodModalData.comments = payload;
+    },
+    loadMoodData: (state, { payload }) => {
+      payload.forEach((row: any) => {
+        const { date } = row;
+        const day = getDateFromDateString(date);
+        const year = getYearFromDateString(date);
+        const month = getMonthFromDateString(date);
+        const monthKey = MONTHS[month] + year;
+
+        if (!(monthKey in state.storedMonths)) {
+          state.storedMonths[monthKey] = populateDays(year, month);
+        }
+        const dayOffset = state.storedMonths[monthKey]
+          .map((el: MoodReport) => getDateFromDateString(el.date))
+          .indexOf(1);
+        state.storedMonths[monthKey][day + dayOffset - 1] = {
+          ...row,
+          activities: JSON.parse(row.activities),
+          emotions: JSON.parse(row.emotions),
+          social: JSON.parse(row.social),
+        };
+      });
     },
   },
 });
@@ -106,6 +128,7 @@ export const {
   setModalWeather,
   saveMonth,
   setModalComments,
+  loadMoodData,
 } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

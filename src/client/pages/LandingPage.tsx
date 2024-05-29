@@ -6,13 +6,14 @@ import { setSession } from '../redux/authSlice';
 import { CalendarPage } from './CalendarPage';
 import { LoginPage } from './LoginPage';
 import { StatusBar } from 'expo-status-bar';
-import { setMonth } from '../redux/calendarSlice';
+import { loadMoodData, setMonth } from '../redux/calendarSlice';
 import { calendarController } from '../controllers/calendarController';
 
 export const LandingPage = () => {
   const dispatch = useDispatch();
   const { session } = useSelector((state: RootState) => state.authReducer);
-
+  const { storedMonths } = useSelector((state: RootState) => state.calendarReducer);
+  
   useEffect(() => {
     dispatch(setMonth(new Date()));
 
@@ -26,10 +27,11 @@ export const LandingPage = () => {
   }, []);
 
   useEffect(() => {
-    const data = calendarController.fetchAllCalendarData(session?.user.id);
-    console.log(data);
-    //TODO
-    //store data into redux state
+    calendarController.fetchAllCalendarData(session?.user.id)
+    .then((data) => {
+      if(!data) return;
+      dispatch(loadMoodData(data));
+    });
   }, [session?.user.id]);
 
   return (

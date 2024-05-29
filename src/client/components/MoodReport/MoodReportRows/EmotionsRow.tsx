@@ -18,42 +18,42 @@ export const EmotionsRow = () => {
     {
       Icon: GiFlowerPot,
       label: Emotions.happy,
-      selected: emotions?.has(Emotions.happy),
+      selected: emotions && Emotions.happy in emotions,
     },
     {
       Icon: LuPartyPopper,
       label: Emotions.excited,
-      selected: emotions?.has(Emotions.excited),
+      selected: emotions && Emotions.excited in emotions,
     },
     {
       Icon: FaCouch,
       label: Emotions.relaxed,
-      selected: emotions?.has(Emotions.relaxed),
+      selected: emotions && Emotions.relaxed in emotions,
     },
     {
       Icon: FaTrophy,
       label: Emotions.proud,
-      selected: emotions?.has(Emotions.proud),
+      selected: emotions && Emotions.proud in emotions,
     },
     {
       Icon: RxEyeClosed,
       label: Emotions.sad,
-      selected: emotions?.has(Emotions.sad),
+      selected: emotions && Emotions.sad in emotions,
     },
     {
       Icon: FaBed,
       label: Emotions.tired,
-      selected: emotions?.has(Emotions.tired),
+      selected: emotions && Emotions.tired in emotions,
     },
     {
       Icon: CiSun,
       label: Emotions.refreshed,
-      selected: emotions?.has(Emotions.refreshed),
+      selected: emotions && Emotions.refreshed in emotions,
     },
     {
       Icon: AiOutlineMeh,
       label: Emotions['so-so'],
-      selected: emotions?.has(Emotions['so-so']),
+      selected: emotions && Emotions['so-so'] in emotions,
     },
   ];
 

@@ -16,27 +16,27 @@ export const SocialRow = () => {
     {
       Icon: FaPeopleGroup,
       label: Social.family,
-      selected: social?.has(Social.family),
+      selected: social && Social.family in social,
     },
     {
       Icon: FaUserFriends,
       label: Social.friends,
-      selected: social?.has(Social.friends),
+      selected: social && Social.friends in social,
     },
     {
       Icon: RiUserHeartLine,
       label: Social.partner,
-      selected: social?.has(Social.partner),
+      selected: social && Social.partner in social,
     },
     {
       Icon: FaPaw,
       label: Social.other,
-      selected: social?.has(Social.other),
+      selected: social && Social.other in social,
     },
     {
       Icon: BsPersonArmsUp,
       label: Social.none,
-      selected: social?.has(Social.none),
+      selected: social && Social.none in social,
     },
   ];
 

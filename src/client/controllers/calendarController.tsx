@@ -5,16 +5,14 @@ import { MoodReport } from '../interfaces/MoodReportTypes';
 export const calendarController = {
   async fetchAllCalendarData(userId: string | undefined) {
     if (!userId) return;
-    console.log('fetch all hit');
-    // const response = await supabase
-    //   .from('mood_report')
-    //   .select()
-    //   .eq('user_id', userId);
-    // console.log('controller:', response);
+    const response = await supabase
+      .from('mood_report')
+      .select()
+      .eq('user_id', userId);
 
-    // if (response.error)
-    //   return Alert.alert('Error getting calendar data: ' + response.error);
-    // return response.data;
+    if (response.error)
+      return Alert.alert('Error getting calendar data: ' + response.error);
+    return response.data;
   },
   async fetchCalendarDataByMonth(userId: string | undefined, date: Date) {
     if (!userId) return;
