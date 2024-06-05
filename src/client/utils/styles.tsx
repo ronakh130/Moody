@@ -9,6 +9,7 @@ export const colors = {
   calActiveDays: 'black',
   calInactiveDays: 'grey',
   button: '#2575de',
+  calendar: 'orange',
 };
 
 export const sizes = {
@@ -21,4 +22,12 @@ export const baseCenterFlexStyle: ImageStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+};
+
+export const dayBorders = {
+  awful: '#FF0000',
+  bad: '#ff652d',
+  meh: '#FFFF00',
+  good: '#ADFF2F',
+  great: '#00FF00',
 };

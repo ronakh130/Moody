@@ -19,7 +19,7 @@ export const LandingPage = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       dispatch(setSession(session));
     });
-
+    
     supabase.auth.onAuthStateChange((_event, session) => {
       dispatch(setSession(session));
     });

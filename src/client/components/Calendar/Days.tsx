@@ -4,6 +4,7 @@ import { RootState } from '../../redux/store';
 import { colors } from '../../utils/styles';
 import { openMoodModal } from '../../redux/calendarSlice';
 import { getDateFromDateString } from '../../utils/util';
+import { getDayStyle } from '../../utils/dayBorders';
 
 export const Days = () => {
   const dispatch = useDispatch();
@@ -18,17 +19,23 @@ export const Days = () => {
   function renderDays() {
     const output = [];
     let i = 0;
-
+    
     while (i < startOfCurrMonth) {
-      output.push(<View style={styles.day} key={i++} />);
+      const { mood_rating } = moods[i];
+      output.push(<View style={getDayStyle(mood_rating)} key={i++} />);
     }
 
     while (i <= lastDateOfMonth) {
+      const { mood_rating } = moods[i];
       const day = days[i];
       const style =
         currMonth === month && day === currDate ? styles.currentDay : styles.activeDay;
       output.push(
-        <Pressable style={styles.day} key={i++} onPress={() => handleOnClick(day)}>
+        <Pressable
+          style={getDayStyle(mood_rating)}
+          key={i++}
+          onPress={() => handleOnClick(day)}
+        >
           <Text style={style}>{day}</Text>
         </Pressable>
       );
@@ -41,12 +48,18 @@ export const Days = () => {
     dispatch(
       openMoodModal({
         date,
-        month, 
+        month,
         year,
         inactiveDays: startOfCurrMonth,
       })
     );
   }
+
+  // const calendarDays = useMemo(() => {
+  //   return <View style={styles.daysContainer}>{renderDays()}</View>;
+  // }, [dispatch, moods])
+
+  // return calenderDays;
 
   return <View style={styles.daysContainer}>{renderDays()}</View>;
 };
@@ -58,17 +71,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     width: '100%',
   },
-  day: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '14.285%',
-    marginVertical: 10,
-  },
   activeDay: {
     color: colors.calActiveDays,
   },
-
   inactiveDay: {
     color: colors.calInactiveDays,
   },

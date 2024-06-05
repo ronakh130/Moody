@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { CalendarTitle } from './CalendarTitle';
 import { DayNames } from './DayNames';
 import { Days } from './Days';
+import { colors } from '../../utils/styles';
 
 export const Calendar = () => {
   return (
@@ -15,13 +16,12 @@ export const Calendar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 50,
     justifyContent: 'center',
     alignItems: 'center',
     width: 350,
     margin: 10,
     padding: 20,
-    backgroundColor: 'orange',
+    backgroundColor: colors.calendar,
     borderRadius: 10,
   },
 });
