@@ -5,6 +5,7 @@ import { colors } from '../../utils/styles';
 import { openMoodModal } from '../../redux/calendarSlice';
 import { getDateFromDateString } from '../../utils/util';
 import { getDayStyle } from '../../utils/dayBorders';
+import { useMemo } from 'react';
 
 export const Days = () => {
   const dispatch = useDispatch();
@@ -55,13 +56,11 @@ export const Days = () => {
     );
   }
 
-  // const calendarDays = useMemo(() => {
-  //   return <View style={styles.daysContainer}>{renderDays()}</View>;
-  // }, [dispatch, moods])
+  const calendarDays = useMemo(() => {
+    return <View style={styles.daysContainer}>{renderDays()}</View>;
+  }, [dispatch, moods])
 
-  // return calenderDays;
-
-  return <View style={styles.daysContainer}>{renderDays()}</View>;
+  return calendarDays;
 };
 
 const styles = StyleSheet.create({

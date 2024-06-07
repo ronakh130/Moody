@@ -12,26 +12,26 @@ import { calendarController } from '../controllers/calendarController';
 export const LandingPage = () => {
   const dispatch = useDispatch();
   const { session } = useSelector((state: RootState) => state.authReducer);
-  
-  useEffect(() => {
-    dispatch(setMonth(new Date()));
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      dispatch(setSession(session));
-    });
-    
+  useEffect(() => {
+    supabase.auth
+      .getSession()
+      .then(({ data: { session } }) => {
+        dispatch(setSession(session));
+        return session;
+      })
+      .then((session) => {
+        calendarController.fetchAllCalendarData(session?.user.id).then((data) => {
+          if (!data) return;
+          dispatch(loadMoodData(data));
+          dispatch(setMonth(new Date()));
+        });
+      });
+
     supabase.auth.onAuthStateChange((_event, session) => {
       dispatch(setSession(session));
     });
   }, []);
-
-  useEffect(() => {
-    calendarController.fetchAllCalendarData(session?.user.id)
-    .then((data) => {
-      if(!data) return;
-      dispatch(loadMoodData(data));
-    });
-  }, [session?.user.id]);
 
   return (
     <>
