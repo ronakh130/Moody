@@ -5,7 +5,7 @@ import { store } from './redux/store';
 import { colors } from './utils/styles';
 import { supabase } from './lib/supabase';
 import { registerRootComponent } from 'expo';
-import { LandingPage } from './pages/LandingPage';
+import { Tabs } from './pages/Tabs';
 
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
@@ -20,7 +20,7 @@ function App() {
     <StrictMode>
       <Provider store={store}>
         <SafeAreaView style={styles.page}>
-          <LandingPage />
+          <Tabs />
         </SafeAreaView>
       </Provider>
     </StrictMode>
