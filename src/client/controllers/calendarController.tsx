@@ -14,19 +14,7 @@ export const calendarController = {
       return Alert.alert('Error getting calendar data: ' + response.error);
     return response.data;
   },
-  async fetchCalendarDataByMonth(userId: string | undefined, date: Date) {
-    if (!userId) return;
-    console.log('fetch by month hit');
-    // const response = await supabase
-    //   .from('mood_report')
-    //   .select()
-    //   .match({ user_id: userId, date });
-    // console.log('controller:', response);
-
-    // if (response.error)
-    //   return Alert.alert('Error getting calendar data: ' + response.error);
-    // return response.data;
-  },
+  
   async submitMoodReport(userId: string | undefined, data: MoodReport) {
     if (!userId) return;
     const response = await supabase
