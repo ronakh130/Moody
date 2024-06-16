@@ -5,13 +5,15 @@ import { FaBook, FaGamepad } from 'rn-icons/fa6';
 import { BiRun } from 'rn-icons/bi';
 import { RiZzzFill } from 'rn-icons/ri';
 import { HiOutlinePaintBrush } from 'rn-icons/hi2';
-import { Activities } from '../../../interfaces/MoodReportTypes';
+import { Activities } from '../../../types/MoodReportTypes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { setModalActivites } from '../../../redux/calendarSlice';
 
 export const ActivityRow = () => {
-  const { activities } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
+  const { activities } = useSelector(
+    (state: RootState) => state.calendarReducer.moodModalData
+  );
   const title = 'Activities';
   const actionCreator = setModalActivites;
   const nodes = [
@@ -57,5 +59,7 @@ export const ActivityRow = () => {
     },
   ];
 
-  return <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />;
+  return (
+    <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />
+  );
 };

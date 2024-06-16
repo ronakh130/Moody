@@ -1,8 +1,10 @@
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
-import { MoodRating } from '../interfaces/MoodReportTypes';
+import { MoodRating } from '../types/MoodReportTypes';
 import { dayBorders } from './styles';
 
-export function getDayStyle(mood: MoodRating | undefined | null): StyleProp<ViewStyle> {
+export function getDayStyle(
+  mood: MoodRating | undefined | null
+): StyleProp<ViewStyle> {
   const baseDayStyle = StyleSheet.create({
     day: {
       display: 'flex',

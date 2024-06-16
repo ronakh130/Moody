@@ -5,7 +5,7 @@ import {
   FaRegFaceSmile,
   FaRegFaceTired,
 } from 'rn-icons/fa6';
-import { MoodRating } from '../../../interfaces/MoodReportTypes';
+import { MoodRating } from '../../../types/MoodReportTypes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { MoodReportRow } from '../MoodReportRow';
@@ -45,5 +45,7 @@ export const MoodRow = () => {
     },
   ];
 
-  return <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />;
+  return (
+    <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />
+  );
 };

@@ -1,4 +1,4 @@
-import { MoodReport } from '../interfaces/MoodReportTypes';
+import { MoodReport } from '../types/MoodReportTypes';
 
 export function populateDays(year: number, month: number): MoodReport[] {
   const firstDayOfMonth = new Date(year, month, 1).getDay();
@@ -19,24 +19,24 @@ export function populateDays(year: number, month: number): MoodReport[] {
   });
 }
 
-export function formatDate(date: Date){
+export function formatDate(date: Date) {
   const offset = date.getTimezoneOffset();
   const newDate = new Date(date.getTime() - offset * 60000);
   return newDate.toISOString().split('T')[0];
 }
 
-export function formatDateParts(year: number, month: number, day: number){
+export function formatDateParts(year: number, month: number, day: number) {
   return year + '-' + month + '-' + day;
 }
 
-export function getDateFromDateString(date: string){
+export function getDateFromDateString(date: string) {
   return parseInt(date.split('-')[2]);
 }
 
-export function getMonthFromDateString(date: string){
+export function getMonthFromDateString(date: string) {
   return parseInt(date.split('-')[1]);
 }
 
-export function getYearFromDateString(date: string){
+export function getYearFromDateString(date: string) {
   return parseInt(date.split('-')[0]);
 }

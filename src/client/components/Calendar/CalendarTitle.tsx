@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'rn-icons/md';
 import { RootState } from '../../redux/store';
 import { setMonth } from '../../redux/calendarSlice';
-import { MONTHS } from '../../interfaces/CalendarTypes';
+import { MONTHS } from '../../types/CalendarTypes';
 
 export const CalendarTitle = () => {
   const dispatch = useDispatch();
-  const { month, year } = useSelector((state: RootState) => state.calendarReducer);
+  const { month, year } = useSelector(
+    (state: RootState) => state.calendarReducer
+  );
 
   function handleOnClickLeft() {
     const date = new Date(year, month - 1);

@@ -1,6 +1,6 @@
 import { Alert } from 'react-native';
 import { supabase } from '../lib/supabase';
-import { MoodReport } from '../interfaces/MoodReportTypes';
+import { MoodReport } from '../types/MoodReportTypes';
 
 export const calendarController = {
   async fetchAllCalendarData(userId: string | undefined) {
@@ -14,7 +14,7 @@ export const calendarController = {
       return Alert.alert('Error getting calendar data: ' + response.error);
     return response.data;
   },
-  
+
   async submitMoodReport(userId: string | undefined, data: MoodReport) {
     if (!userId) return;
     const response = await supabase

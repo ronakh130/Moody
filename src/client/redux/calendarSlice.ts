@@ -6,8 +6,8 @@ import {
   getYearFromDateString,
   populateDays,
 } from '../utils/util';
-import { Calendar, MONTHS } from '../interfaces/CalendarTypes';
-import { MoodReport } from '../interfaces/MoodReportTypes';
+import { Calendar, MONTHS } from '../types/CalendarTypes';
+import { MoodReport } from '../types/MoodReportTypes';
 
 const initialState: Calendar = {
   month: 0,

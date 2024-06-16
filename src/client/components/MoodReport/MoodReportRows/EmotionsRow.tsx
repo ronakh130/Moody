@@ -5,13 +5,15 @@ import { CiSun } from 'rn-icons/ci';
 import { AiOutlineMeh } from 'rn-icons/ai';
 import { RxEyeClosed } from 'rn-icons/rx';
 import { GiFlowerPot } from 'rn-icons/gi';
-import { Emotions } from '../../../interfaces/MoodReportTypes';
+import { Emotions } from '../../../types/MoodReportTypes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { setModalEmotions } from '../../../redux/calendarSlice';
 
 export const EmotionsRow = () => {
-  const { emotions } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
+  const { emotions } = useSelector(
+    (state: RootState) => state.calendarReducer.moodModalData
+  );
   const title = 'Emotions';
   const actionCreator = setModalEmotions;
   const nodes = [
@@ -57,5 +59,7 @@ export const EmotionsRow = () => {
     },
   ];
 
-  return <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />;
+  return (
+    <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />
+  );
 };

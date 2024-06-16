@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { AddFriendsInput } from '../components/FriendsList/AddFriendsInput';
-import { baseCenterFlexStyle, colors, sizes } from '../utils/styles';
+import { baseCenterFlexStyle, sizes } from '../utils/styles';
+import { NewFriends } from '../components/FriendsList/NewFriends';
+import { CurrentFriends } from '../components/FriendsList/CurrentFriends';
 
 export const FriendsPage = () => {
   return (
     <View style={styles.container}>
       <AddFriendsInput />
+      <FlatList
+        data={[<NewFriends />, <CurrentFriends />]}
+        renderItem={({ item }) => item}
+      />
       <StatusBar />
     </View>
   );
@@ -15,10 +21,8 @@ export const FriendsPage = () => {
 const styles = StyleSheet.create({
   container: {
     ...baseCenterFlexStyle,
-    padding: sizes.padding,
-    backgroundColor: colors.appAccent,
+    paddingVertical: sizes.padding,
     width: sizes.width,
-    borderRadius: sizes.borderRadius,
-    margin: 20,
+    gap: 20,
   },
 });

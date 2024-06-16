@@ -38,13 +38,29 @@ export const LoginForm = () => {
         autoCorrect={false}
         secureTextEntry={true}
       />
-      <Pressable style={styles.loginButton} onPress={handleLogin} disabled={loading}>
+      <Pressable
+        style={({ pressed }) =>
+          pressed
+            ? { ...styles.loginButton, opacity: 0.8 }
+            : styles.loginButton
+        }
+        onPress={handleLogin}
+        disabled={loading}
+      >
         <StyledText style={{ color: colors.appAccentDark, fontSize: 20 }}>
           Login
         </StyledText>
       </Pressable>
 
-      <Pressable style={styles.signUpButton} onPress={handleSignUp} disabled={loading}>
+      <Pressable
+        style={({ pressed }) =>
+          pressed
+            ? { ...styles.signUpButton, opacity: 0.8 }
+            : styles.signUpButton
+        }
+        onPress={handleSignUp}
+        disabled={loading}
+      >
         <StyledText style={{ color: colors.appBackground, fontSize: 20 }}>
           Sign Up
         </StyledText>

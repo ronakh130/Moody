@@ -16,7 +16,17 @@ export const AddFriendsInput = () => {
         autoCapitalize='none'
         autoCorrect={false}
       />
-      <Pressable style={styles.addFriendButton} onPress={() => setEmail('')}>
+      <Pressable
+        style={({ pressed }) =>
+          pressed
+            ? {
+                ...styles.addFriendButton,
+                opacity: 0.8,
+              }
+            : styles.addFriendButton
+        }
+        onPress={() => setEmail('')}
+      >
         <StyledText style={{ color: colors.appBackground, fontSize: 18 }}>
           Add Friend
         </StyledText>
@@ -28,6 +38,10 @@ export const AddFriendsInput = () => {
 const styles = StyleSheet.create({
   container: {
     ...baseCenterFlexStyle,
+    backgroundColor: colors.appAccent,
+    padding: sizes.padding,
+    width: sizes.width,
+    borderRadius: sizes.borderRadius,
     flexDirection: 'row',
     gap: 20,
   },

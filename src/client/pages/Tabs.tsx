@@ -52,9 +52,11 @@ export const Tabs = () => {
               headerShown: false,
               tabBarStyle: {
                 backgroundColor: colors.appAccent,
-                marginHorizontal: 20,
+                width: sizes.width,
+                margin: sizes.padding,
                 borderRadius: sizes.borderRadius,
-              }
+                alignSelf: 'center',
+              },
             }}
           >
             <Tab.Screen

@@ -2,13 +2,15 @@ import { IoRainy, IoSnow, IoSunny } from 'rn-icons/io5';
 import { MoodReportRow } from '../MoodReportRow';
 import { WiDayCloudy } from 'rn-icons/wi';
 import { PiWind } from 'rn-icons/pi';
-import { Weather } from '../../../interfaces/MoodReportTypes';
+import { Weather } from '../../../types/MoodReportTypes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { setModalWeather } from '../../../redux/calendarSlice';
 
 export const WeatherRow = () => {
-  const { weather } = useSelector((state: RootState) => state.calendarReducer.moodModalData);
+  const { weather } = useSelector(
+    (state: RootState) => state.calendarReducer.moodModalData
+  );
   const title = 'Weather';
   const actionCreator = setModalWeather;
   const nodes = [
@@ -39,5 +41,7 @@ export const WeatherRow = () => {
     },
   ];
 
-  return <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />;
+  return (
+    <MoodReportRow title={title} nodes={nodes} actionCreator={actionCreator} />
+  );
 };
