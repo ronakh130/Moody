@@ -11,7 +11,7 @@ import { calendarController } from '../controllers/calendarController';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, View } from 'react-native';
-import { baseCenterFlexStyle, colors } from '../utils/styles';
+import { baseCenterFlexStyle, colors, sizes } from '../utils/styles';
 import { FaRegCalendar, FaUserFriends } from 'rn-icons/fa';
 import { FriendsPage } from './FriendsPage';
 
@@ -21,24 +21,21 @@ export const Tabs = () => {
   const Tab = createBottomTabNavigator();
 
   useEffect(() => {
+    const date = new Date();
+    dispatch(setMonth(date));
     supabase.auth
       .getSession()
       .then(({ data: { session } }) => {
         dispatch(setSession(session));
-        return session;
-      })
-      .then((session) => {
-        calendarController
-          .fetchAllCalendarData(session?.user.id)
-          .then((data) => {
-            if (!data) return;
-            dispatch(loadMoodData(data));
-            dispatch(setMonth(new Date()));
-          });
       });
 
     supabase.auth.onAuthStateChange((_event, session) => {
       dispatch(setSession(session));
+      calendarController.fetchAllCalendarData(session?.user.id).then((data) => {
+        if (!data) return;
+        dispatch(loadMoodData(data));
+        dispatch(setMonth(date));
+      });
     });
   }, []);
 
@@ -47,11 +44,17 @@ export const Tabs = () => {
       {session && session.user ? (
         <NavigationContainer>
           <Tab.Navigator
-            initialRouteName='Friends'
+            initialRouteName='Calendar'
             sceneContainerStyle={styles.navigator}
             screenOptions={{
               tabBarActiveTintColor: 'red',
               tabBarShowLabel: false,
+              headerShown: false,
+              tabBarStyle: {
+                backgroundColor: colors.appAccent,
+                marginHorizontal: 20,
+                borderRadius: sizes.borderRadius,
+              }
             }}
           >
             <Tab.Screen
