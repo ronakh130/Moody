@@ -1,6 +1,6 @@
 import { Alert } from 'react-native';
 import { supabase } from '../lib/supabase';
-import { validEmail } from '../utils/util';
+import { validEmail } from '../utils/validation';
 
 export const authController = {
   async login(email: string, password: string) {
@@ -30,6 +30,7 @@ export const authController = {
     });
 
     if (error) return Alert.alert(error.message);
-    if (!session) return Alert.alert('Please check your inbox for email verification!');
+    if (!session)
+      return Alert.alert('Please check your inbox for email verification!');
   },
 };

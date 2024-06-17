@@ -1,31 +1,47 @@
-import { StyleSheet, Text, Modal, Pressable, View, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Modal,
+  Pressable,
+  View,
+  FlatList,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { closeMoodModal, saveMonth, setMonth,  } from '../../redux/calendarSlice';
+import { closeMoodModal, saveMonth, setMonth } from '../../redux/calendarSlice';
 import { MoodRow } from './MoodReportRows/MoodRow';
 import { ActivityRow } from './MoodReportRows/ActivityRow';
 import { EmotionsRow } from './MoodReportRows/EmotionsRow';
 import { SocialRow } from './MoodReportRows/SocialRow';
 import { WeatherRow } from './MoodReportRows/WeatherRow';
 import { CommentsRow } from './MoodReportRows/CommentsRow';
-import { getDateFromDateString } from '../../utils/util';
+import { getDateFromDateString } from '../../utils/dates';
 import { calendarController } from '../../controllers/calendarController';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
-  const { moodModalVisible, moods, moodModalData, month, year } = useSelector((state: RootState) => state.calendarReducer);
+  const { moodModalVisible, moods, moodModalData, month, year } = useSelector(
+    (state: RootState) => state.calendarReducer
+  );
   const { userId } = useSelector((state: RootState) => state.authReducer);
-  const moodReportRows = [MoodRow(), WeatherRow(), EmotionsRow(), SocialRow(), ActivityRow(), CommentsRow()];
+  const moodReportRows = [
+    MoodRow(),
+    WeatherRow(),
+    EmotionsRow(),
+    SocialRow(),
+    ActivityRow(),
+    CommentsRow(),
+  ];
 
   function handleClose() {
     const days = moods.map((el) => getDateFromDateString(el.date));
     const startOfCurrMonth = days.indexOf(1);
 
     calendarController.submitMoodReport(userId, moodModalData);
-    
+
     dispatch(saveMonth());
     dispatch(closeMoodModal({ inactiveDays: startOfCurrMonth }));
-    dispatch(setMonth(new Date(year, month)))
+    dispatch(setMonth(new Date(year, month)));
   }
 
   return (

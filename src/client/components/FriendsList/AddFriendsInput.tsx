@@ -2,20 +2,20 @@ import { Alert, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { baseCenterFlexStyle, colors, sizes } from '../../utils/styles';
 import { StyledText } from '../StyledText';
 import { useState } from 'react';
-import { validEmail } from '../../utils/util';
 import { userController } from '../../controllers/userController';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { validEmail } from '../../utils/validation';
 
 export const AddFriendsInput = () => {
   const [email, setEmail] = useState('');
   const { userId } = useSelector((state: RootState) => state.authReducer);
 
-  async function handleClick(){
+  async function handleClick() {
     setEmail('');
     if (!validEmail(email)) return Alert.alert('Please use a valid email.');
     const status = await userController.addFriend(email, userId);
-    if(status === 201) return Alert.alert('Friend request sent!');
+    if (status === 201) return Alert.alert('Friend request sent!');
   }
 
   return (

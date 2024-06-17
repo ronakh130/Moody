@@ -5,7 +5,7 @@ import {
   getMonthFromDateString,
   getYearFromDateString,
   populateDays,
-} from '../utils/util';
+} from '../utils/dates';
 import { Calendar, MONTHS } from '../types/CalendarTypes';
 import { MoodReport } from '../types/MoodReportTypes';
 
@@ -116,7 +116,7 @@ export const calendarSlice = createSlice({
     },
     clearMonthData: (state) => {
       state.storedMonths = {};
-    }
+    },
   },
 });
 

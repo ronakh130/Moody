@@ -16,36 +16,25 @@ export const userController = {
       .from('users')
       .select()
       .in('user_id', userIds);
-    if (error)
-      return console.log('Error getting metadata for list of users');
+    if (error) console.log('Error getting metadata for list of users');
     return data;
   },
 
-  async getFriendships(userId: string) {
-    const {data, error} = await supabase
-      .from('friendships')
-      .select()
-      .or(`user_id_1.eq.${userId},user_id_2.eq.${userId}`);
-    if (error) return console.log('Error getting friendships');
-    // TODO
-    // format response to only include friend ids
-    return data;
-  },
-
-  async getUserId(email: string){
+  async getUserId(email: string) {
     const { data, error } = await supabase
       .from('users')
       .select()
       .eq('email', email)
       .single();
-    if(error) return console.log('Error getting user id');
+    if (error) return console.log('Error getting user id');
     return data.user_id;
   },
-  
+
   async addFriend(email: string, userId: string) {
     const id = await this.getUserId(email);
     if (!id) return Alert.alert('Email not found.');
-    if (id === userId) return Alert.alert('Enter an email different from your own.');
+    if (id === userId)
+      return Alert.alert('Enter an email different from your own.');
     const { status, error } = await supabase.from('friendships').insert({
       user_id_1: userId,
       user_id_2: id,
@@ -54,5 +43,12 @@ export const userController = {
     return status;
   },
 
-
+  async getFriendships(userId: string) {
+    const { data, error } = await supabase
+      .from('friendships')
+      .select()
+      .or(`user_id_1.eq.${userId},user_id_2.eq.${userId}`);
+    if (error) console.log('Error getting friendships');
+    return data;
+  },
 };
