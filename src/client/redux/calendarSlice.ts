@@ -114,6 +114,9 @@ export const calendarSlice = createSlice({
         };
       });
     },
+    clearMonthData: (state) => {
+      state.storedMonths = {};
+    }
   },
 });
 
@@ -129,6 +132,7 @@ export const {
   saveMonth,
   setModalComments,
   loadMoodData,
+  clearMonthData,
 } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

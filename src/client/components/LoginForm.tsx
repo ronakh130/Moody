@@ -3,13 +3,17 @@ import { baseCenterFlexStyle, colors, sizes } from '../utils/styles';
 import { StyledText } from './StyledText';
 import { useState } from 'react';
 import { authController } from '../controllers/authController';
+import { useDispatch } from 'react-redux';
+import { clearMonthData } from '../redux/calendarSlice';
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   async function handleLogin() {
+    dispatch(clearMonthData());
     setLoading(true);
     await authController.login(email, password);
     setLoading(false);

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Modal, Pressable, View, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { closeMoodModal, saveMonth,  } from '../../redux/calendarSlice';
+import { closeMoodModal, saveMonth, setMonth,  } from '../../redux/calendarSlice';
 import { MoodRow } from './MoodReportRows/MoodRow';
 import { ActivityRow } from './MoodReportRows/ActivityRow';
 import { EmotionsRow } from './MoodReportRows/EmotionsRow';
@@ -13,7 +13,7 @@ import { calendarController } from '../../controllers/calendarController';
 
 export const MoodReportModal = () => {
   const dispatch = useDispatch();
-  const { moodModalVisible, moods, moodModalData } = useSelector((state: RootState) => state.calendarReducer);
+  const { moodModalVisible, moods, moodModalData, month, year } = useSelector((state: RootState) => state.calendarReducer);
   const { userId } = useSelector((state: RootState) => state.authReducer);
   const moodReportRows = [MoodRow(), WeatherRow(), EmotionsRow(), SocialRow(), ActivityRow(), CommentsRow()];
 
@@ -25,6 +25,7 @@ export const MoodReportModal = () => {
     
     dispatch(saveMonth());
     dispatch(closeMoodModal({ inactiveDays: startOfCurrMonth }));
+    dispatch(setMonth(new Date(year, month)))
   }
 
   return (
