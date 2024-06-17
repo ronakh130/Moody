@@ -11,6 +11,7 @@ export const NewFriends = () => {
 
   return (
     <View style={styles.container}>
+      <FriendRow name='Rudy' status='pending' />
       {friendships.filter((fs) =>  fs.status === 'pending').map(fs => {
         return <FriendRow name={fs.name ?? fs.email} status={fs.status} />
       })}
