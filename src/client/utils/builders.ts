@@ -1,4 +1,8 @@
-import { Friendship, FriendshipResponse, FriendshipStatus } from '../types/FriendTypes';
+import {
+  Friendship,
+  FriendshipResponse,
+  FriendshipStatus,
+} from '../types/FriendTypes';
 
 export function removeUserId(
   userId: string,
@@ -20,17 +24,6 @@ export function buildFriendships(
   metadata: any[] | null
 ): Friendship[] {
   if (!metadata) return [];
-  const data = {
-    idsAndStatus: { '10bc33e2-e217-4551-945a-3b958b6f8add': 'pending' },
-    metadata: [
-      {
-        email: 'rhirpara130@gmail.com',
-        full_name: null,
-        user_id: '10bc33e2-e217-4551-945a-3b958b6f8add',
-        username: null,
-      },
-    ],
-  };
   return metadata.map((row) => {
     return {
       friendId: row.user_id,
