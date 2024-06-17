@@ -5,9 +5,9 @@ import { baseCenterFlexStyle } from '../../utils/styles';
 export const CurrentFriends = () => {
   return (
     <View style={styles.container}>
-      <FriendRow name='Rudy' status='accepted' />
-      <FriendRow name='Rudy' status='accepted' />
-      <FriendRow name='Rudy' status='accepted' />
+      <FriendRow name='Ronak' status='accepted' />
+      <FriendRow name='Sam' status='accepted' />
+      <FriendRow name='Sojo' status='accepted' />
     </View>
   );
 };

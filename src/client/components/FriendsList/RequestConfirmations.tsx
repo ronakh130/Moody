@@ -3,10 +3,12 @@ import { baseCenterFlexStyle, colors, sizes } from '../../utils/styles';
 import { FaCheck } from 'rn-icons/fa6';
 import { RxCross2 } from 'rn-icons/rx';
 import { IconButton } from '../IconButton';
+import { StyledText } from '../StyledText';
 
 export const RequestConfirmations = () => {
   return (
     <View style={styles.container}>
+      <StyledText>Add Friend?</StyledText>
       <IconButton
         style={styles.confirmButton}
         opacity={0.4}
