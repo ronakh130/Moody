@@ -40,3 +40,7 @@ export function getMonthFromDateString(date: string) {
 export function getYearFromDateString(date: string) {
   return parseInt(date.split('-')[0]);
 }
+
+export function validEmail(email: string) {
+  return email.includes('@') && email.includes('.') && email.length > 7;
+}

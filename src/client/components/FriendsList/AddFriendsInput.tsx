@@ -1,10 +1,16 @@
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { baseCenterFlexStyle, colors, sizes } from '../../utils/styles';
 import { StyledText } from '../StyledText';
 import { useState } from 'react';
+import { validEmail } from '../../utils/util';
 
 export const AddFriendsInput = () => {
   const [email, setEmail] = useState('');
+
+  function handleClick(){
+    setEmail('');
+    if (!validEmail(email)) return Alert.alert('Please use a real email.');
+  }
 
   return (
     <View style={styles.container}>
@@ -25,7 +31,7 @@ export const AddFriendsInput = () => {
               }
             : styles.addFriendButton
         }
-        onPress={() => setEmail('')}
+        onPress={handleClick}
       >
         <StyledText style={{ color: colors.appBackground, fontSize: 18 }}>
           Add Friend

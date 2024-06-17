@@ -1,15 +1,12 @@
 import { Alert } from 'react-native';
 import { supabase } from '../lib/supabase';
-
-function validEmail(email: string) {
-  return email.includes('@') && email.includes('.');
-}
+import { validEmail } from '../utils/util';
 
 export const authController = {
   async login(email: string, password: string) {
-    if (!validEmail(email)) return Alert.alert('Please use a real email');
+    if (!validEmail(email)) return Alert.alert('Please use a real email.');
     if (password.length < 6)
-      return Alert.alert('Please use a password longer than 6 characters');
+      return Alert.alert('Please use a password longer than 6 characters.');
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -20,9 +17,9 @@ export const authController = {
   },
 
   async signUp(email: string, password: string) {
-    if (!validEmail(email)) return Alert.alert('Please use a real email');
+    if (!validEmail(email)) return Alert.alert('Please use a real email.');
     if (password.length < 6)
-      return Alert.alert('Please use a password longer than 6 characters');
+      return Alert.alert('Please use a password longer than 6 characters.');
 
     const {
       data: { session },
