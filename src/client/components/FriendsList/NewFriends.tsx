@@ -5,9 +5,9 @@ import { baseCenterFlexStyle } from "../../utils/styles"
 export const NewFriends = () => {
   return (
     <View style={styles.container}>
-      <FriendRow name="Rudy" status="pending"/>
+      <FriendRow name='Rudy' status='pending' />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

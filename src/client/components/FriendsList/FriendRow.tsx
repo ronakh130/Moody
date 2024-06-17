@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
   name: {
     alignSelf: 'center',
     fontSize: 20,
+    maxWidth: 100,
   }
 });
