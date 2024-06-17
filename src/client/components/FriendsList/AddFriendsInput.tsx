@@ -3,13 +3,19 @@ import { baseCenterFlexStyle, colors, sizes } from '../../utils/styles';
 import { StyledText } from '../StyledText';
 import { useState } from 'react';
 import { validEmail } from '../../utils/util';
+import { userController } from '../../controllers/userController';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 export const AddFriendsInput = () => {
   const [email, setEmail] = useState('');
+  const { userId } = useSelector((state: RootState) => state.authReducer);
 
-  function handleClick(){
+  async function handleClick(){
     setEmail('');
-    if (!validEmail(email)) return Alert.alert('Please use a real email.');
+    if (!validEmail(email)) return Alert.alert('Please use a valid email.');
+    const status = await userController.addFriend(email, userId);
+    if(status === 201) return Alert.alert('Friend request sent!');
   }
 
   return (
