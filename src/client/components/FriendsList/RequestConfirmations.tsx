@@ -1,49 +1,32 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { baseCenterFlexStyle, colors, sizes } from '../../utils/styles';
 import { FaCheck } from 'rn-icons/fa6';
 import { RxCross2 } from 'rn-icons/rx';
+import { IconButton } from '../IconButton';
 
 export const RequestConfirmations = () => {
   return (
     <View style={styles.container}>
-      <Pressable>
-        {({ pressed }) => (
-          <View
-            style={
-              pressed
-                ? {
-                    ...styles.confirmButton,
-                    opacity: 0.4,
-                  }
-                : styles.confirmButton
-            }
-          >
-            <FaCheck
-              size={25}
-              fill={pressed ? colors.appAccentLight : colors.appBackground}
-            />
-          </View>
+      <IconButton
+        style={styles.confirmButton}
+        opacity={0.4}
+        Icon={(pressed) => (
+          <FaCheck
+            size={25}
+            fill={pressed ? colors.appAccentLight : colors.appBackground}
+          />
         )}
-      </Pressable>
-      <Pressable>
-        {({ pressed }) => (
-          <View
-            style={
-              pressed
-                ? {
-                    ...styles.rejectButton,
-                    opacity: 0.4,
-                  }
-                : styles.rejectButton
-            }
-          >
-            <RxCross2
-              size={27}
-              color={pressed ? colors.appAccentDark : colors.appBackground}
-            />
-          </View>
+      />
+      <IconButton
+        style={styles.rejectButton}
+        opacity={0.4}
+        Icon={(pressed) => (
+          <RxCross2
+            size={27}
+            color={pressed ? colors.appAccentDark : colors.appBackground}
+          />
         )}
-      </Pressable>
+      />
     </View>
   );
 };
