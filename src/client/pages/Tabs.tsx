@@ -23,11 +23,7 @@ export const Tabs = () => {
   useEffect(() => {
     const date = new Date();
     dispatch(setMonth(date));
-    supabase.auth
-      .getSession()
-      .then(({ data: { session } }) => {
-        dispatch(setSession(session));
-      });
+    supabase.auth.getSession();
 
     supabase.auth.onAuthStateChange((_event, session) => {
       dispatch(setSession(session));
@@ -44,7 +40,7 @@ export const Tabs = () => {
       {session && session.user ? (
         <NavigationContainer>
           <Tab.Navigator
-            initialRouteName='Calendar'
+            initialRouteName='Friends'
             sceneContainerStyle={styles.navigator}
             screenOptions={{
               tabBarActiveTintColor: 'red',
