@@ -40,7 +40,7 @@ export const Tabs = () => {
       {session && session.user ? (
         <NavigationContainer>
           <Tab.Navigator
-            initialRouteName='Friends'
+            initialRouteName='Calendar'
             sceneContainerStyle={styles.navigator}
             screenOptions={{
               tabBarActiveTintColor: 'red',
