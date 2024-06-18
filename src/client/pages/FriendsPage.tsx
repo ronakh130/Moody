@@ -8,11 +8,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { userController } from '../controllers/userController';
-import { setFriends } from '../redux/friendSlice';
+import { setFriends, updateNewFriends } from '../redux/friendSlice';
 import { buildFriendships, removeUserId } from '../utils/builders';
 
 export const FriendsPage = () => {
   const { userId } = useSelector((state: RootState) => state.authReducer);
+  const { friendships, newFriends } = useSelector((state: RootState) => state.friendReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,8 +23,9 @@ export const FriendsPage = () => {
       const metadata = await userController.getAllUserMetadata(userIds);
       const friendships = buildFriendships(idsAndStatus, metadata);
       dispatch(setFriends(friendships));
+      dispatch(updateNewFriends());
     });
-  }, [userId]);
+  }, [dispatch, userId, friendships.length, newFriends.length]);
 
   return (
     <View style={styles.container}>

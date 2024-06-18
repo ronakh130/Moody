@@ -1,5 +1,6 @@
 export interface FriendState {
   friendships: Friendship[],
+  newFriends: Friendship[],
 }
 
 export interface Friendship {

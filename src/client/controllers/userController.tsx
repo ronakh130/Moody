@@ -30,7 +30,7 @@ export const userController = {
     return data.user_id;
   },
 
-  async addFriend(email: string, userId: string) {
+  async sendFriendRequest(email: string, userId: string) {
     const id = await this.getUserId(email);
     if (!id) return Alert.alert('Email not found.');
     if (id === userId)
@@ -50,5 +50,27 @@ export const userController = {
       .or(`user_id_1.eq.${userId},user_id_2.eq.${userId}`);
     if (error) console.log('Error getting friendships');
     return data;
+  },
+
+  async acceptFriendRequest(userId: string, friendId: string) {
+    const { data, error } = await supabase
+      .from('friendships')
+      .update({ status: 'accepted' })
+      .or(
+        `and(user_id_1.eq.${userId},user_id_2.eq.${friendId}),and(user_id_1.eq.${friendId},user_id_2.eq.${userId})`
+      ).select();
+    if(error) console.log('Error accepting friend request');
+    return data;
+  },
+
+  async declineFriendRequest(userId: string, friendId: string) {
+    const { status, error } = await supabase
+      .from('friendships')
+      .delete()
+      .or(
+        `and(user_id_1.eq.${userId},user_id_2.eq.${friendId}),and(user_id_1.eq.${friendId},user_id_2.eq.${userId})`
+      );
+    if(error) console.log('Error declining friend request');
+    return status;
   },
 };

@@ -14,7 +14,7 @@ export const AddFriendsInput = () => {
   async function handleClick() {
     setEmail('');
     if (!validEmail(email)) return Alert.alert('Please use a valid email.');
-    const status = await userController.addFriend(email, userId);
+    const status = await userController.sendFriendRequest(email, userId);
     if (status === 201) return Alert.alert('Friend request sent!');
   }
 

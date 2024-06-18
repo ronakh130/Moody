@@ -3,6 +3,7 @@ import { FriendState } from '../types/FriendTypes';
 
 const initialState: FriendState = {
   friendships: [],
+  newFriends: [],
 };
 
 export const friends = createSlice({
@@ -12,9 +13,15 @@ export const friends = createSlice({
     setFriends: (state, { payload }) => {
       state.friendships = payload
     },
+    updateNewFriends: (state) => {
+      state.newFriends = state.friendships.filter((fs) => fs.status === 'pending');
+    },
+    removeRequest: (state, {payload}) => {
+      state.friendships = state.friendships.filter(fs => fs.friendId !== payload)
+    },
   },
 });
 
-export const { setFriends } = friends.actions;
+export const { setFriends, updateNewFriends, removeRequest } = friends.actions;
 
 export default friends.reducer;

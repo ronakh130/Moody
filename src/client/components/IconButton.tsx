@@ -4,11 +4,12 @@ type ButtonProps = {
   style: ViewStyle;
   Icon: (props: boolean) => JSX.Element;
   opacity?: number;
+  onPress: () => void;
 };
 
-export const IconButton = ({ style, Icon, opacity }: ButtonProps) => {
+export const IconButton = ({ style, Icon, opacity, onPress }: ButtonProps) => {
   return (
-    <Pressable>
+    <Pressable onPress={onPress}>
       {({ pressed }) => (
         <View style={pressed ? { ...style, opacity: opacity ?? 0.7 } : style}>
           {Icon(pressed)}

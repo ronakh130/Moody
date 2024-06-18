@@ -5,15 +5,14 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 export const NewFriends = () => {
-  const { friendships } = useSelector(
+  const { newFriends } = useSelector(
     (state: RootState) => state.friendReducer
   );
-
+  
   return (
     <View style={styles.container}>
-      <FriendRow name='Rudy' status='pending' />
-      {friendships.filter((fs) =>  fs.status === 'pending').map(fs => {
-        return <FriendRow name={fs.name ?? fs.email} status={fs.status} />
+      {newFriends.map(fs => {
+        return <FriendRow key={fs.friendId} name={fs.name ?? fs.email} status={fs.status} friendId={fs.friendId}/>
       })}
     </View>
   );

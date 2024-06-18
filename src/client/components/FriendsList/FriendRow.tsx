@@ -7,13 +7,14 @@ import { FriendButtons } from './FriendButtons';
 type FriendRowProps = {
   name: string,
   status: string,
+  friendId: string
 }
 
-export const FriendRow = ({name, status}: FriendRowProps) => {
+export const FriendRow = ({name, status, friendId}: FriendRowProps) => {
   return (
     <View style={styles.container}>
       <StyledText style={styles.name}>{name}</StyledText>
-      {status === 'pending' ? <RequestConfirmations /> : <FriendButtons />}
+      {status === 'pending' ? <RequestConfirmations friendId={friendId} /> : <FriendButtons />}
     </View>
   );
 };

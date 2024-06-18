@@ -11,13 +11,17 @@ export const CurrentFriends = () => {
 
   return (
     <View style={styles.container}>
-      <FriendRow name='Ronak' status='accepted' />
-      <FriendRow name='Sam' status='accepted' />
-      <FriendRow name='Sojo' status='accepted' />
       {friendships
         .filter((fs) => fs.status === 'accepted')
         .map((fs) => {
-          return <FriendRow name={fs.name ?? fs.email} status={fs.status} />;
+          return (
+            <FriendRow
+              key={fs.friendId}
+              name={fs.name ?? fs.email}
+              status={fs.status}
+              friendId={fs.friendId}
+            />
+          );
         })}
     </View>
   );
